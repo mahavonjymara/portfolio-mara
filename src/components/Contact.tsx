@@ -25,7 +25,7 @@ export default function Contact() {
       <h2 style={{ fontFamily:"var(--font-syne)", fontSize:"2.4rem", fontWeight:800, letterSpacing:"-0.02em", marginBottom:"3rem", color:"var(--text)" }}>
         Travaillons <span style={{ background:"linear-gradient(135deg, var(--accent), var(--accent3))", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>ensemble</span>
       </h2>
-      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"4rem", alignItems:"start" }}>
+      <div className="contact-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"4rem", alignItems:"start" }}>
         <div>
           <p style={{ color:"var(--text2)", lineHeight:1.85, fontSize:"1rem", fontWeight:300, marginBottom:"2rem" }}>
             Developpeur Full Stack JavaScript junior base a Antananarivo, disponible pour un stage ou une premiere experience en local ou remote international.

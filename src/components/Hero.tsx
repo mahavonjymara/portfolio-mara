@@ -50,7 +50,7 @@ export default function Hero() {
         <p style={{ fontSize:"1rem", color:"var(--text2)", lineHeight:1.85, maxWidth:440, marginBottom:"2.5rem", fontWeight:300 }}>
           Je concois des applications web et mobile modernes du front au back avec React, Next.js, Node.js et React Native. Base a Antananarivo, disponible en remote.
         </p>
-        <div style={{ display:"flex", gap:"1rem", flexWrap:"wrap" }}>
+        <div className="hero-cta" style={{ display:"flex", gap:"1rem", flexWrap:"wrap" }}>
           <a href="#projects">
             <button style={{ background:"var(--accent)", color:"#fff", padding:"0.8rem 2rem", borderRadius:8, fontSize:"0.9rem", fontWeight:500, cursor:"pointer", border:"none", letterSpacing:"0.02em" }}>Voir mes projets</button>
           </a>
@@ -58,7 +58,7 @@ export default function Hero() {
         </div>
       </div>
       <div style={{ display:"flex", justifyContent:"center", alignItems:"center" }}>
-        <div style={{ position:"relative", width:340, height:340 }}>
+        <div className="avatar-wrap" style={{ position:"relative", width:340, height:340 }}>
           <div style={{ position:"absolute", inset:0, borderRadius:"50%", border:"1.5px solid var(--border)", animation:"spin 18s linear infinite" }}>
             <div style={{ position:"absolute", top:-4, left:"50%", transform:"translateX(-50%)", width:8, height:8, borderRadius:"50%", background:"var(--accent)" }} />
           </div>

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 :root {
   --bg: #0a0a0f;
@@ -28,11 +28,7 @@
   --card: rgba(0, 0, 0, 0.03);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   background: var(--bg);
@@ -42,6 +38,93 @@ body {
   overflow-x: hidden;
 }
 
-html {
-  scroll-behavior: smooth;
+html { scroll-behavior: smooth; }
+
+/* ========== NAVBAR ========== */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.2rem !important; }
+  nav .nav-links { display: none !important; }
+}
+
+/* ========== HERO ========== */
+@media (max-width: 768px) {
+  #hero {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+    padding: 3rem 1.2rem !important;
+    gap: 2.5rem !important;
+    text-align: center;
+  }
+  #hero h1 { font-size: 2.8rem !important; }
+  #hero .hero-cta { justify-content: center; }
+  #hero p { margin: 0 auto 2.5rem auto !important; }
+}
+
+@media (max-width: 480px) {
+  #hero h1 { font-size: 2.2rem !important; }
+}
+
+/* ========== STATS BAR ========== */
+@media (max-width: 768px) {
+  .stats-bar {
+    grid-template-columns: 1fr 1fr !important;
+    display: grid !important;
+  }
+  .stats-bar .stat:nth-child(2) { border-right: none !important; }
+}
+
+@media (max-width: 480px) {
+  .stats-bar { grid-template-columns: 1fr !important; }
+  .stats-bar .stat { border-right: none !important; }
+}
+
+/* ========== SKILLS ========== */
+@media (max-width: 768px) {
+  #skills { padding: 3rem 1.2rem !important; }
+  #skills .skills-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #skills .skills-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ========== PROJECTS ========== */
+@media (max-width: 768px) {
+  #projects { padding: 3rem 1.2rem !important; }
+  #projects .projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ========== CONTACT ========== */
+@media (max-width: 768px) {
+  #contact { padding: 3rem 1.2rem !important; }
+  #contact .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+}
+
+/* ========== AVATAR ========== */
+@media (max-width: 768px) {
+  .avatar-wrap {
+    width: 260px !important;
+    height: 260px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .avatar-wrap {
+    width: 220px !important;
+    height: 220px !important;
+  }
+}
+
+/* ========== FOOTER ========== */
+@media (max-width: 480px) {
+  footer { font-size: 0.7rem !important; padding: 1.5rem 1rem !important; }
 }
