@@ -38,7 +38,7 @@ export default function Navbar() {
             {dark ? "Dark" : "Light"}
           </button>
           <button onClick={() => setMenuOpen(!menuOpen)} style={{ background:"var(--card)", border:"1px solid var(--border)", color:"var(--text)", padding:"0.5rem 0.7rem", borderRadius:8, fontSize:"1.1rem", cursor:"pointer", lineHeight:1 }}>
-            {menuOpen ? "✕" : "☰"}
+            {menuOpen ? "X" : "="}
           </button>
         </div>
       </div>
@@ -52,12 +52,6 @@ export default function Navbar() {
           ))}
         </div>
       )}
-      <style>{
-        @media (max-width: 768px) {
-          .nav-desktop { display: none !important; }
-          .nav-mobile { display: flex !important; }
-        }
-      }</style>
     </nav>
   );
 }
