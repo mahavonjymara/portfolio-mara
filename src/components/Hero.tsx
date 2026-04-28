@@ -54,7 +54,11 @@ export default function Hero() {
           <a href="#projects">
             <button style={{ background:"var(--accent)", color:"#fff", padding:"0.8rem 2rem", borderRadius:8, fontSize:"0.9rem", fontWeight:500, cursor:"pointer", border:"none", letterSpacing:"0.02em" }}>Voir mes projets</button>
           </a>
-          <button style={{ background:"transparent", color:"var(--text)", padding:"0.8rem 2rem", borderRadius:8, fontSize:"0.9rem", fontWeight:500, cursor:"pointer", border:"1px solid var(--border)" }}>Telecharger CV</button>
+          <a href="/CV_MARA_Mahavonjy.pdf" download="CV_MARA_Mahavonjy.pdf">
+            <button style={{ background:"transparent", color:"var(--text)", padding:"0.8rem 2rem", borderRadius:8, fontSize:"0.9rem", fontWeight:500, cursor:"pointer", border:"1px solid var(--border)", display:"flex", alignItems:"center", gap:"0.5rem" }}>
+              Telecharger CV
+            </button>
+          </a>
         </div>
       </div>
       <div style={{ display:"flex", justifyContent:"center", alignItems:"center" }}>
