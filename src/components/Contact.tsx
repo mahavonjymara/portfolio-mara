@@ -15,28 +15,28 @@ export default function Contact() {
     { icon:"LI", label:contact.linkedin, href:"https://" + contact.linkedin },
     { icon:"EM", label:contact.email, href:"mailto:" + contact.email },
   ];
-  const inputStyle = { width:"100%", background:"var(--bg)", border:"1px solid var(--border)", borderRadius:8, padding:"0.75rem 1rem", color:"var(--text)", fontSize:"0.9rem", outline:"none" };
+  const inputStyle = { width:"100%", background:"rgba(255,255,255,0.05)", border:"1px solid rgba(212,168,83,0.2)", borderRadius:10, padding:"0.8rem 1rem", color:"#fff", fontFamily:"var(--font-dm-sans)", fontSize:"0.9rem", outline:"none", transition:"border-color 0.2s" };
   return (
-    <section id="contact" style={{ padding:"5rem 2.5rem", background:"var(--bg2)" }}>
-      <div style={{ fontSize:"0.72rem", letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--accent)", fontWeight:500, marginBottom:"0.8rem", display:"flex", alignItems:"center", gap:"0.5rem" }}>
-        <span style={{ width:20, height:1, background:"var(--accent)", display:"inline-block" }} />
+    <section id="contact" style={{ padding:"5.5rem 2.5rem", background:"#0d1b4b" }}>
+      <div style={{ fontSize:"0.7rem", letterSpacing:"0.25em", textTransform:"uppercase", color:"#d4a853", fontWeight:700, marginBottom:"0.6rem", display:"flex", alignItems:"center", gap:"0.5rem" }}>
+        <span style={{ width:20, height:2, background:"#d4a853", borderRadius:2, display:"inline-block" }} />
         Contact
       </div>
-      <h2 style={{ fontFamily:"var(--font-syne)", fontSize:"2.4rem", fontWeight:800, letterSpacing:"-0.02em", marginBottom:"3rem", color:"var(--text)" }}>
-        Travaillons <span style={{ background:"linear-gradient(135deg, var(--accent), var(--accent3))", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>ensemble</span>
+      <h2 style={{ fontFamily:"var(--font-syne)", fontSize:"2.5rem", fontWeight:800, letterSpacing:"-0.02em", marginBottom:"3rem", color:"#fff" }}>
+        Travaillons <span style={{ color:"#d4a853" }}>ensemble</span>
       </h2>
       <div className="contact-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"4rem", alignItems:"start" }}>
         <div>
-          <p style={{ color:"var(--text2)", lineHeight:1.85, fontSize:"1rem", fontWeight:300, marginBottom:"2rem" }}>
-            Developpeur Full Stack JavaScript junior base a Antananarivo, disponible pour un stage ou une premiere experience en local ou remote international.
+          <p style={{ color:"rgba(255,255,255,0.6)", lineHeight:1.9, fontSize:"1rem", fontWeight:300, marginBottom:"2rem" }}>
+            Developpeur Full Stack JavaScript junior base a Antananarivo, disponible pour une alternance ou stage en local ou en remote international.
           </p>
-          <div style={{ display:"flex", flexDirection:"column", gap:"0.8rem" }}>
+          <div style={{ display:"flex", flexDirection:"column" as const, gap:"0.8rem" }}>
             {contactLinks.map((l) => (
               <a key={l.label} href={l.href} target="_blank" rel="noreferrer"
-                style={{ display:"flex", alignItems:"center", gap:"0.8rem", color:"var(--text2)", fontSize:"0.9rem", textDecoration:"none", padding:"0.8rem 1.2rem", borderRadius:8, border:"1px solid var(--border)", background:"var(--card)" }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor="var(--accent)"; e.currentTarget.style.color="var(--accent)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor="var(--border)"; e.currentTarget.style.color="var(--text2)"; }}>
-                <div style={{ width:32, height:32, borderRadius:6, background:"var(--bg3)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.7rem", color:"var(--text3)" }}>{l.icon}</div>
+                style={{ display:"flex", alignItems:"center", gap:"0.8rem", color:"rgba(255,255,255,0.6)", fontSize:"0.9rem", textDecoration:"none", padding:"0.9rem 1.2rem", borderRadius:12, border:"1px solid rgba(212,168,83,0.2)", background:"rgba(212,168,83,0.05)", transition:"all 0.2s" }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor="#d4a853"; e.currentTarget.style.color="#d4a853"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor="rgba(212,168,83,0.2)"; e.currentTarget.style.color="rgba(255,255,255,0.6)"; }}>
+                <div style={{ width:34, height:34, borderRadius:8, background:"rgba(212,168,83,0.12)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.78rem", color:"#d4a853", fontWeight:700, border:"1px solid rgba(212,168,83,0.25)", flexShrink:0 }}>{l.icon}</div>
                 {l.label}
               </a>
             ))}
@@ -45,17 +45,19 @@ export default function Contact() {
         <div>
           {(["name","email","message"] as const).map((field) => (
             <div key={field} style={{ marginBottom:"1.2rem" }}>
-              <label style={{ display:"block", fontSize:"0.78rem", textTransform:"uppercase", letterSpacing:"0.12em", color:"var(--text3)", marginBottom:"0.5rem" }}>
+              <label style={{ display:"block", fontSize:"0.72rem", textTransform:"uppercase" as const, letterSpacing:"0.16em", color:"rgba(255,255,255,0.4)", marginBottom:"0.5rem", fontWeight:600 }}>
                 {field === "name" ? "Nom" : field === "email" ? "Email" : "Message"}
               </label>
               {field === "message" ? (
-                <textarea value={form.message} onChange={(e) => setForm({ ...form, message:e.target.value })} placeholder="Decrivez votre projet..." style={{ ...inputStyle, height:110, resize:"none" } as React.CSSProperties} />
+                <textarea value={form.message} onChange={(e) => setForm({ ...form, message:e.target.value })} placeholder="Decrivez votre projet..." style={{ ...inputStyle, height:110, resize:"none" } as React.CSSProperties}
+                  onFocus={(e) => (e.target.style.borderColor="#d4a853")} onBlur={(e) => (e.target.style.borderColor="rgba(212,168,83,0.2)")} />
               ) : (
-                <input type={field === "email" ? "email" : "text"} value={form[field]} onChange={(e) => setForm({ ...form, [field]:e.target.value })} placeholder={field === "name" ? "Votre nom" : "votre@email.com"} style={inputStyle as React.CSSProperties} />
+                <input type={field === "email" ? "email" : "text"} value={form[field]} onChange={(e) => setForm({ ...form, [field]:e.target.value })} placeholder={field === "name" ? "Votre nom" : "votre@email.com"} style={inputStyle as React.CSSProperties}
+                  onFocus={(e) => (e.target.style.borderColor="#d4a853")} onBlur={(e) => (e.target.style.borderColor="rgba(212,168,83,0.2)")} />
               )}
             </div>
           ))}
-          <button onClick={handleSubmit} style={{ width:"100%", background: sent ? "var(--accent3)" : "var(--accent)", color: sent ? "#0a0a0f" : "#fff", padding:"0.85rem 2rem", borderRadius:8, fontSize:"0.9rem", fontWeight:500, cursor:"pointer", border:"none", transition:"all 0.3s" }}>
+          <button onClick={handleSubmit} style={{ width:"100%", background: sent ? "#0d9e75" : "#d4a853", color: sent ? "#fff" : "#0d1b4b", padding:"0.85rem 2rem", borderRadius:10, fontSize:"0.9rem", fontWeight:700, cursor:"pointer", border:"none", transition:"all 0.3s", letterSpacing:"0.03em" }}>
             {sent ? "Message envoye !" : "Envoyer le message"}
           </button>
         </div>

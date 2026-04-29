@@ -1,7 +1,7 @@
 ﻿"use client";
 import { useState, useEffect } from "react";
 export default function Navbar() {
-  const [dark, setDark] = useState(true);
+  const [dark, setDark] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -15,7 +15,7 @@ export default function Navbar() {
   }, []);
   const toggleTheme = () => {
     setDark(!dark);
-    document.documentElement.classList.toggle("light", dark);
+    document.body.classList.toggle("dark", !dark);
   };
   const links = [
     { label: "A propos", href: "#hero" },
@@ -23,39 +23,38 @@ export default function Navbar() {
     { label: "Projets", href: "#projects" },
     { label: "Contact", href: "#contact" },
   ];
+  const navStyle = { position:"sticky" as const, top:0, zIndex:100, display:"flex", alignItems:"center", justifyContent:"space-between", padding:"1rem 2.5rem", background: dark ? "rgba(13,27,75,0.85)" : "rgba(135,206,235,0.75)", borderBottom:"1px solid rgba(212,168,83,0.3)", backdropFilter:"blur(20px)", boxShadow: scrolled ? "0 4px 24px rgba(10,22,40,0.1)" : "none", transition:"all 0.3s" };
   return (
-    <nav style={{ position:"sticky", top:0, zIndex:100, background:"var(--bg)", borderBottom:"1px solid var(--border)", backdropFilter:"blur(10px)", boxShadow: scrolled ? "0 4px 30px rgba(0,0,0,0.2)" : "none" }}>
-      <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"1rem 1.5rem" }}>
-        <div style={{ fontFamily:"var(--font-syne)", fontWeight:800, fontSize:"1.1rem", background:"linear-gradient(135deg, var(--accent), var(--accent2))", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>mara.dev</div>
-        {!isMobile ? (
-          <div style={{ display:"flex", gap:"2rem", alignItems:"center" }}>
-            {links.map((l) => (
-              <a key={l.href} href={l.href} style={{ fontSize:"0.85rem", color:"var(--text2)", textDecoration:"none", letterSpacing:"0.05em", textTransform:"uppercase", fontWeight:500 }}
-                onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "var(--text)")}
-                onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "var(--text2)")}>{l.label}</a>
-            ))}
-            <button onClick={toggleTheme} style={{ background:"var(--card)", border:"1px solid var(--border)", color:"var(--text2)", padding:"0.4rem 0.9rem", borderRadius:"20px", fontSize:"0.8rem", cursor:"pointer" }}>
-              {dark ? "Dark" : "Light"}
-            </button>
-          </div>
-        ) : (
-          <div style={{ display:"flex", alignItems:"center", gap:"0.8rem" }}>
-            <button onClick={toggleTheme} style={{ background:"var(--card)", border:"1px solid var(--border)", color:"var(--text2)", padding:"0.4rem 0.8rem", borderRadius:"20px", fontSize:"0.75rem", cursor:"pointer" }}>
-              {dark ? "Dark" : "Light"}
-            </button>
-            <button onClick={() => setMenuOpen(!menuOpen)} style={{ background:"var(--card)", border:"1px solid var(--border)", color:"var(--text)", width:40, height:40, borderRadius:8, fontSize:"1.2rem", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center" }}>
-              {menuOpen ? "✕" : "☰"}
-            </button>
-          </div>
-        )}
-      </div>
+    <nav style={navStyle}>
+      <div style={{ fontFamily:"var(--font-syne)", fontWeight:800, fontSize:"1.15rem", color:"#d4a853", letterSpacing:"-0.02em" }}>mara.dev</div>
+      {!isMobile ? (
+        <div style={{ display:"flex", gap:"2rem", alignItems:"center" }}>
+          {links.map((l) => (
+            <a key={l.href} href={l.href} style={{ fontSize:"0.82rem", color: dark ? "#c8d0e0" : "#0a1628", textDecoration:"none", letterSpacing:"0.08em", textTransform:"uppercase", fontWeight:600, transition:"color 0.2s" }}
+              onMouseEnter={(e) => ((e.target as HTMLElement).style.color="#d4a853")}
+              onMouseLeave={(e) => ((e.target as HTMLElement).style.color= dark ? "#c8d0e0" : "#0a1628")}>{l.label}</a>
+          ))}
+          <button onClick={toggleTheme} style={{ background: dark ? "rgba(212,168,83,0.1)" : "#0d1b4b", color:"#d4a853", padding:"0.42rem 1.1rem", borderRadius:"20px", fontSize:"0.78rem", cursor:"pointer", border:"1.5px solid #d4a853", fontFamily:"var(--font-dm-sans)", fontWeight:600, transition:"all 0.2s" }}>
+            {dark ? "Mode clair" : "Mode sombre"}
+          </button>
+        </div>
+      ) : (
+        <div style={{ display:"flex", alignItems:"center", gap:"0.8rem" }}>
+          <button onClick={toggleTheme} style={{ background: dark ? "rgba(212,168,83,0.1)" : "#0d1b4b", color:"#d4a853", padding:"0.38rem 0.8rem", borderRadius:"20px", fontSize:"0.72rem", cursor:"pointer", border:"1.5px solid #d4a853", fontFamily:"var(--font-dm-sans)", fontWeight:600 }}>
+            {dark ? "Clair" : "Sombre"}
+          </button>
+          <button onClick={() => setMenuOpen(!menuOpen)} style={{ background:"rgba(212,168,83,0.15)", border:"1.5px solid rgba(212,168,83,0.4)", color: dark ? "#f5f0e8" : "#0d1b4b", width:42, height:42, borderRadius:10, fontSize:"1.2rem", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center" }}>
+            {menuOpen ? "X" : "="}
+          </button>
+        </div>
+      )}
       {isMobile && menuOpen && (
-        <div style={{ background:"var(--bg2)", borderTop:"1px solid var(--border)", padding:"0.5rem 0" }}>
+        <div style={{ position:"absolute" as const, top:"100%", left:0, right:0, background: dark ? "rgba(13,27,75,0.97)" : "rgba(135,206,235,0.97)", borderTop:"1px solid rgba(212,168,83,0.3)", backdropFilter:"blur(20px)", padding:"0.5rem 0", zIndex:200 }}>
           {links.map((l) => (
             <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)}
-              style={{ display:"block", fontSize:"0.95rem", color:"var(--text2)", textDecoration:"none", textTransform:"uppercase", fontWeight:500, padding:"1rem 1.5rem", borderBottom:"1px solid var(--border)", letterSpacing:"0.05em" }}
-              onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "var(--accent)")}
-              onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "var(--text2)")}>{l.label}</a>
+              style={{ display:"block", fontSize:"0.95rem", color: dark ? "#c8d0e0" : "#0a1628", textDecoration:"none", textTransform:"uppercase", fontWeight:600, padding:"1rem 1.5rem", borderBottom:"1px solid rgba(212,168,83,0.15)", letterSpacing:"0.06em" }}
+              onMouseEnter={(e) => ((e.target as HTMLElement).style.color="#d4a853")}
+              onMouseLeave={(e) => ((e.target as HTMLElement).style.color= dark ? "#c8d0e0" : "#0a1628")}>{l.label}</a>
           ))}
         </div>
       )}

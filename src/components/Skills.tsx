@@ -2,30 +2,31 @@
 import { skills } from "@/lib/data";
 export default function Skills() {
   return (
-    <section id="skills" style={{ padding:"5rem 2.5rem", background:"var(--bg2)" }}>
-      <div style={{ fontSize:"0.72rem", letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--accent)", fontWeight:500, marginBottom:"0.8rem", display:"flex", alignItems:"center", gap:"0.5rem" }}>
-        <span style={{ width:20, height:1, background:"var(--accent)", display:"inline-block" }} />
+    <section id="skills" style={{ padding:"5.5rem 2.5rem", background:"rgba(135,206,235,0.35)" }}>
+      <div style={{ fontSize:"0.7rem", letterSpacing:"0.25em", textTransform:"uppercase", color:"#d4a853", fontWeight:700, marginBottom:"0.6rem", display:"flex", alignItems:"center", gap:"0.5rem" }}>
+        <span style={{ width:20, height:2, background:"#d4a853", borderRadius:2, display:"inline-block" }} />
         Expertise technique
       </div>
-      <h2 style={{ fontFamily:"var(--font-syne)", fontSize:"2.4rem", fontWeight:800, letterSpacing:"-0.02em", marginBottom:"3rem", lineHeight:1.15, color:"var(--text)" }}>
-        Mes <span style={{ background:"linear-gradient(135deg, var(--accent), var(--accent3))", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>competences</span>
+      <h2 style={{ fontFamily:"var(--font-syne)", fontSize:"2.5rem", fontWeight:800, letterSpacing:"-0.02em", marginBottom:"3rem", lineHeight:1.15, color:"var(--text)" }}>
+        Mes <span style={{ color:"#d4a853" }}>competences</span>
       </h2>
-      <div className="skills-grid" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(200px, 1fr))", gap:1, border:"1px solid var(--border)" }}>
+      <div className="skills-grid" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(210px, 1fr))", gap:"1.5rem" }}>
         {skills.map((skill) => (
-          <div key={skill.name} style={{ background:"var(--bg)", padding:"2rem 1.5rem", border:"1px solid transparent", transition:"border-color 0.2s, background 0.2s", cursor:"default" }}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor="var(--accent)"; e.currentTarget.style.background="var(--bg2)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor="transparent"; e.currentTarget.style.background="var(--bg)"; }}>
+          <div key={skill.name}
+            style={{ background:"rgba(255,255,255,0.6)", border:"1px solid rgba(255,255,255,0.85)", borderRadius:18, padding:"2rem 1.5rem", transition:"all 0.25s", cursor:"default", boxShadow:"0 4px 24px rgba(10,22,40,0.08)", backdropFilter:"blur(12px)" }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor="#d4a853"; e.currentTarget.style.transform="translateY(-5px)"; e.currentTarget.style.boxShadow="0 16px 48px rgba(212,168,83,0.2)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor="rgba(255,255,255,0.85)"; e.currentTarget.style.transform="translateY(0)"; e.currentTarget.style.boxShadow="0 4px 24px rgba(10,22,40,0.08)"; }}>
             <div style={{ fontSize:"1.8rem", marginBottom:"1rem" }}>{skill.icon}</div>
-            <div style={{ fontFamily:"var(--font-syne)", fontWeight:700, fontSize:"1rem", marginBottom:"0.5rem", color:"var(--text)" }}>{skill.name}</div>
-            <div style={{ display:"flex", alignItems:"center", gap:"0.6rem", fontSize:"0.78rem", color:"var(--text3)" }}>
-              <div style={{ flex:1, height:3, background:"var(--bg3)", borderRadius:2, overflow:"hidden" }}>
-                <div style={{ height:"100%", width:skill.level + "%", borderRadius:2, background:"linear-gradient(90deg, var(--accent), var(--accent2))" }} />
+            <div style={{ fontFamily:"var(--font-syne)", fontWeight:700, fontSize:"1rem", marginBottom:"0.6rem", color:"var(--text)" }}>{skill.name}</div>
+            <div style={{ display:"flex", alignItems:"center", gap:"0.6rem", fontSize:"0.78rem", color:"var(--text3)", marginBottom:"0.8rem" }}>
+              <div style={{ flex:1, height:3, background:"rgba(10,22,40,0.1)", borderRadius:2, overflow:"hidden" }}>
+                <div style={{ height:"100%", width:skill.level + "%", borderRadius:2, background:"linear-gradient(90deg,#d4a853,#e8c27a)" }} />
               </div>
               <span>{skill.label}</span>
             </div>
-            <div style={{ display:"flex", flexWrap:"wrap", gap:"0.4rem", marginTop:"0.8rem" }}>
+            <div style={{ display:"flex", flexWrap:"wrap" as const, gap:"0.4rem" }}>
               {skill.tags.map((tag) => (
-                <span key={tag} style={{ fontSize:"0.65rem", padding:"0.25rem 0.55rem", borderRadius:4, background:"var(--bg3)", color:"var(--text3)", border:"1px solid var(--border)" }}>{tag}</span>
+                <span key={tag} style={{ fontSize:"0.65rem", padding:"0.28rem 0.65rem", borderRadius:6, background:"rgba(212,168,83,0.15)", color:"#7a5500", border:"1px solid rgba(212,168,83,0.35)", fontWeight:600 }}>{tag}</span>
               ))}
             </div>
           </div>
