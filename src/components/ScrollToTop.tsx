@@ -25,7 +25,7 @@ export default function ScrollToTop() {
         pointerEvents: visible ? "auto" : "none",
       }}
       onMouseEnter={(e) => { e.currentTarget.style.transform="translateY(-3px)"; e.currentTarget.style.boxShadow="0 8px 28px rgba(212,168,83,0.6)"; }}
-      onMouseLeave={(e) => { e.currentTarget.style.transform="translateY(0)"; e.currentThread.style.boxShadow="0 4px 20px rgba(212,168,83,0.5)"; }}
+      onMouseLeave={(e) => { e.currentTarget.style.transform="translateY(0)"; e.currentTarget.style.boxShadow="0 4px 20px rgba(212,168,83,0.5)"; }}
       title="Retour en haut"
     >
       ↑
