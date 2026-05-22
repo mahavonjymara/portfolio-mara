@@ -1,9 +1,13 @@
 ﻿"use client";
 import { useState } from "react";
 import { contact } from "@/lib/data";
+import { useScrollAnimation } from "@/lib/useScrollAnimation";
 export default function Contact() {
   const [form, setForm] = useState({ name:"", email:"", message:"" });
   const [sent, setSent] = useState(false);
+  const title = useScrollAnimation();
+  const left = useScrollAnimation();
+  const right = useScrollAnimation();
   const handleSubmit = () => {
     if (!form.name || !form.email || !form.message) return;
     setSent(true);
@@ -18,15 +22,17 @@ export default function Contact() {
   const inputStyle = { width:"100%", background:"rgba(255,255,255,0.05)", border:"1px solid rgba(212,168,83,0.2)", borderRadius:10, padding:"0.8rem 1rem", color:"#fff", fontFamily:"var(--font-dm-sans)", fontSize:"0.9rem", outline:"none", transition:"border-color 0.2s" };
   return (
     <section id="contact" style={{ padding:"5.5rem 2.5rem", background:"#0d1b4b" }}>
-      <div style={{ fontSize:"0.7rem", letterSpacing:"0.25em", textTransform:"uppercase", color:"#d4a853", fontWeight:700, marginBottom:"0.6rem", display:"flex", alignItems:"center", gap:"0.5rem" }}>
-        <span style={{ width:20, height:2, background:"#d4a853", borderRadius:2, display:"inline-block" }} />
-        Contact
+      <div ref={title.ref} style={{ opacity: title.visible ? 1 : 0, transform: title.visible ? "translateY(0)" : "translateY(40px)", transition:"all 0.7s ease" }}>
+        <div style={{ fontSize:"0.7rem", letterSpacing:"0.25em", textTransform:"uppercase", color:"#d4a853", fontWeight:700, marginBottom:"0.6rem", display:"flex", alignItems:"center", gap:"0.5rem" }}>
+          <span style={{ width:20, height:2, background:"#d4a853", borderRadius:2, display:"inline-block" }} />
+          Contact
+        </div>
+        <h2 style={{ fontFamily:"var(--font-syne)", fontSize:"2.5rem", fontWeight:800, letterSpacing:"-0.02em", marginBottom:"3rem", color:"#fff" }}>
+          Travaillons <span style={{ color:"#d4a853" }}>ensemble</span>
+        </h2>
       </div>
-      <h2 style={{ fontFamily:"var(--font-syne)", fontSize:"2.5rem", fontWeight:800, letterSpacing:"-0.02em", marginBottom:"3rem", color:"#fff" }}>
-        Travaillons <span style={{ color:"#d4a853" }}>ensemble</span>
-      </h2>
       <div className="contact-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"4rem", alignItems:"start" }}>
-        <div>
+        <div ref={left.ref} style={{ opacity: left.visible ? 1 : 0, transform: left.visible ? "translateX(0)" : "translateX(-50px)", transition:"all 0.8s ease 0.2s" }}>
           <p style={{ color:"rgba(255,255,255,0.6)", lineHeight:1.9, fontSize:"1rem", fontWeight:300, marginBottom:"2rem" }}>
             Developpeur Full Stack JavaScript junior base a Antananarivo, disponible pour une alternance ou stage en local ou en remote international.
           </p>
@@ -42,7 +48,7 @@ export default function Contact() {
             ))}
           </div>
         </div>
-        <div>
+        <div ref={right.ref} style={{ opacity: right.visible ? 1 : 0, transform: right.visible ? "translateX(0)" : "translateX(50px)", transition:"all 0.8s ease 0.3s" }}>
           {(["name","email","message"] as const).map((field) => (
             <div key={field} style={{ marginBottom:"1.2rem" }}>
               <label style={{ display:"block", fontSize:"0.72rem", textTransform:"uppercase" as const, letterSpacing:"0.16em", color:"rgba(255,255,255,0.4)", marginBottom:"0.5rem", fontWeight:600 }}>
