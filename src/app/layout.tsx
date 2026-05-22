@@ -16,14 +16,14 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "MARA Mahavonjy — Full Stack JavaScript Developer",
+  title: "MARA Mahavonjy - Full Stack JavaScript Developer",
   description: "Portfolio de MARA Mahavonjy, developpeur Full Stack JavaScript base a Antananarivo, Madagascar.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" suppressHydrationWarning>
-      <body className={${dmSans.variable} }>
+      <body className={[dmSans.variable, syne.variable].join(" ")}>
         <LangProvider>{children}</LangProvider>
       </body>
     </html>
