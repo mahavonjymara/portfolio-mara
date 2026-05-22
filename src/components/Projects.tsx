@@ -1,17 +1,19 @@
 ﻿"use client";
 import { projects } from "@/lib/data";
+import { useLang } from "@/lib/LangContext";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 export default function Projects() {
+  const { t } = useLang();
   const title = useScrollAnimation();
   return (
     <section id="projects" style={{ padding:"5.5rem 2.5rem", background:"transparent" }}>
       <div ref={title.ref} style={{ opacity: title.visible ? 1 : 0, transform: title.visible ? "translateY(0)" : "translateY(40px)", transition:"all 0.7s ease" }}>
         <div style={{ fontSize:"0.7rem", letterSpacing:"0.25em", textTransform:"uppercase", color:"#d4a853", fontWeight:700, marginBottom:"0.6rem", display:"flex", alignItems:"center", gap:"0.5rem" }}>
           <span style={{ width:20, height:2, background:"#d4a853", borderRadius:2, display:"inline-block" }} />
-          Portfolio
+          {t.projects.tag}
         </div>
         <h2 style={{ fontFamily:"var(--font-syne)", fontSize:"2.5rem", fontWeight:800, letterSpacing:"-0.02em", marginBottom:"3rem", lineHeight:1.15, color:"var(--text)" }}>
-          Mes <span style={{ color:"#d4a853" }}>projets</span>
+          {t.projects.title} <span style={{ color:"#d4a853" }}>{t.projects.highlight}</span>
         </h2>
       </div>
       <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(300px, 1fr))", gap:"1.5rem" }}>
@@ -34,8 +36,8 @@ export default function Projects() {
                 ))}
               </div>
               <div style={{ display:"flex", gap:"0.8rem", marginTop:"1.5rem" }}>
-                <a href={project.github} target="_blank" rel="noreferrer" style={{ fontSize:"0.8rem", textDecoration:"none", padding:"0.42rem 1rem", borderRadius:8, border:"1px solid rgba(10,22,40,0.2)", color:"var(--text2)", background:"rgba(255,255,255,0.5)", transition:"all 0.2s" }}>GitHub</a>
-                <a href={project.demo} target="_blank" rel="noreferrer" style={{ fontSize:"0.8rem", textDecoration:"none", padding:"0.42rem 1rem", borderRadius:8, border:"1px solid rgba(212,168,83,0.4)", color:"#d4a853", background:"rgba(212,168,83,0.08)", transition:"all 0.2s" }}>Demo</a>
+                <a href={project.github} target="_blank" rel="noreferrer" style={{ fontSize:"0.8rem", textDecoration:"none", padding:"0.42rem 1rem", borderRadius:8, border:"1px solid rgba(10,22,40,0.2)", color:"var(--text2)", background:"rgba(255,255,255,0.5)", transition:"all 0.2s" }}>{t.projects.github}</a>
+                <a href={project.demo} target="_blank" rel="noreferrer" style={{ fontSize:"0.8rem", textDecoration:"none", padding:"0.42rem 1rem", borderRadius:8, border:"1px solid rgba(212,168,83,0.4)", color:"#d4a853", background:"rgba(212,168,83,0.08)", transition:"all 0.2s" }}>{t.projects.demo}</a>
               </div>
             </div>
           );

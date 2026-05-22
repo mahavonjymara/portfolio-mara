@@ -1,20 +1,27 @@
 ﻿"use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-const roles = ["Full Stack JS Developer","React & Next.js Developer","Node.js & API Builder","React Native Developer"];
+import { useLang } from "@/lib/LangContext";
+import { useScrollAnimation } from "@/lib/useScrollAnimation";
 export default function Hero() {
+  const { t, lang } = useLang();
+  const hero = useScrollAnimation(0.1);
+  const roles = {
+    fr: ["Developpeur Full Stack JS","Developpeur React & Next.js","Architecte Node.js & API","Developpeur React Native"],
+    en: ["Full Stack JS Developer","React & Next.js Developer","Node.js & API Builder","React Native Developer"],
+  };
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [deleting, setDeleting] = useState(false);
   useEffect(() => {
-    const current = roles[roleIndex];
+    const current = roles[lang][roleIndex];
     let timeout: NodeJS.Timeout;
     if (!deleting && displayed.length < current.length) { timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 60); }
     else if (!deleting && displayed.length === current.length) { timeout = setTimeout(() => setDeleting(true), 2000); }
     else if (deleting && displayed.length > 0) { timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length - 1)), 35); }
-    else { setDeleting(false); setRoleIndex((i) => (i + 1) % roles.length); }
+    else { setDeleting(false); setRoleIndex((i) => (i + 1) % roles[lang].length); }
     return () => clearTimeout(timeout);
-  }, [displayed, deleting, roleIndex]);
+  }, [displayed, deleting, roleIndex, lang]);
   const badges = [
     { color:"#d4a853", text:"React & Next.js", top:"10%", right:"-8%", left:"auto", bottom:"auto" },
     { color:"#0d9e75", text:"Node.js - API REST", top:"auto", right:"auto", left:"-10%", bottom:"22%" },
@@ -22,10 +29,10 @@ export default function Hero() {
   ];
   return (
     <section id="hero" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", minHeight:"88vh", padding:"4rem 2.5rem", gap:"3rem", alignItems:"center" }}>
-      <div>
+      <div ref={hero.ref} style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "translateY(0)" : "translateY(40px)", transition:"all 0.8s ease" }}>
         <div style={{ fontSize:"0.72rem", letterSpacing:"0.22em", textTransform:"uppercase", color:"#d4a853", fontWeight:700, marginBottom:"1.2rem", display:"flex", alignItems:"center", gap:"0.6rem" }}>
           <span style={{ width:28, height:2, background:"#d4a853", borderRadius:2, display:"inline-block" }} />
-          Disponible - Open to work
+          {t.hero.available}
         </div>
         <h1 style={{ fontFamily:"var(--font-syne)", fontSize:"3.8rem", fontWeight:800, lineHeight:1.05, letterSpacing:"-0.03em", marginBottom:"0.8rem" }}>
           <span style={{ color:"#0d1b4b" }}>MARA</span><br />
@@ -36,15 +43,13 @@ export default function Hero() {
           <span style={{ display:"inline-block", width:2, height:"1.1em", background:"#d4a853", marginLeft:2, verticalAlign:"middle", animation:"blink 1s step-end infinite" }} />
           <style>{"@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}"}</style>
         </div>
-        <p className="hero-desc" style={{ fontSize:"1rem", color:"var(--text2)", lineHeight:1.9, maxWidth:440, marginBottom:"2.5rem", fontWeight:300 }}>
-          Je concois des applications web et mobile modernes du front au back avec React, Next.js, Node.js et React Native. Base a Antananarivo, disponible en remote.
-        </p>
+        <p className="hero-desc" style={{ fontSize:"1rem", color:"var(--text2)", lineHeight:1.9, maxWidth:440, marginBottom:"2.5rem", fontWeight:300 }}>{t.hero.desc}</p>
         <div className="hero-cta" style={{ display:"flex", gap:"1rem", flexWrap:"wrap" as const }}>
           <a href="#projects">
-            <button style={{ background:"#d4a853", color:"#0d1b4b", padding:"0.85rem 2.2rem", borderRadius:12, fontSize:"0.9rem", fontWeight:700, cursor:"pointer", border:"none", letterSpacing:"0.03em", boxShadow:"0 4px 20px rgba(212,168,83,0.45)", transition:"all 0.25s" }}>Voir mes projets</button>
+            <button style={{ background:"#d4a853", color:"#0d1b4b", padding:"0.85rem 2.2rem", borderRadius:12, fontSize:"0.9rem", fontWeight:700, cursor:"pointer", border:"none", letterSpacing:"0.03em", boxShadow:"0 4px 20px rgba(212,168,83,0.45)", transition:"all 0.25s" }}>{t.hero.cta1}</button>
           </a>
           <a href="/CV_MARA_Mahavonjy.pdf" download="CV_MARA_Mahavonjy.pdf">
-            <button style={{ background:"rgba(255,255,255,0.4)", color:"#0d1b4b", padding:"0.85rem 2.2rem", borderRadius:12, fontSize:"0.9rem", fontWeight:600, cursor:"pointer", border:"2px solid #0d1b4b", transition:"all 0.25s", backdropFilter:"blur(8px)" }}>Telecharger CV</button>
+            <button style={{ background:"rgba(255,255,255,0.4)", color:"#0d1b4b", padding:"0.85rem 2.2rem", borderRadius:12, fontSize:"0.9rem", fontWeight:600, cursor:"pointer", border:"2px solid #0d1b4b", transition:"all 0.25s", backdropFilter:"blur(8px)" }}>{t.hero.cta2}</button>
           </a>
         </div>
       </div>

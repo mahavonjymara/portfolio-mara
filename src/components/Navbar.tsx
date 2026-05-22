@@ -1,6 +1,8 @@
 ﻿"use client";
 import { useState, useEffect } from "react";
+import { useLang } from "@/lib/LangContext";
 export default function Navbar() {
+  const { lang, setLang, t } = useLang();
   const [dark, setDark] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -18,32 +20,44 @@ export default function Navbar() {
     document.body.classList.toggle("dark", !dark);
   };
   const links = [
-    { label: "A propos", href: "#hero" },
-    { label: "Competences", href: "#skills" },
-    { label: "Projets", href: "#projects" },
-    { label: "Contact", href: "#contact" },
+    { label: t.nav.about, href: "#hero" },
+    { label: t.nav.skills, href: "#skills" },
+    { label: t.nav.projects, href: "#projects" },
+    { label: t.nav.contact, href: "#contact" },
   ];
-  const navStyle = { position:"sticky" as const, top:0, zIndex:100, display:"flex", alignItems:"center", justifyContent:"space-between", padding:"1rem 2.5rem", background: dark ? "rgba(13,27,75,0.85)" : "rgba(135,206,235,0.75)", borderBottom:"1px solid rgba(212,168,83,0.3)", backdropFilter:"blur(20px)", boxShadow: scrolled ? "0 4px 24px rgba(10,22,40,0.1)" : "none", transition:"all 0.3s" };
+  const navBg = dark ? "rgba(13,27,75,0.85)" : "rgba(135,206,235,0.75)";
+  const linkColor = dark ? "#c8d0e0" : "#0a1628";
   return (
-    <nav style={navStyle}>
+    <nav style={{ position:"sticky" as const, top:0, zIndex:100, display:"flex", alignItems:"center", justifyContent:"space-between", padding:"1rem 2.5rem", background:navBg, borderBottom:"1px solid rgba(212,168,83,0.3)", backdropFilter:"blur(20px)", boxShadow: scrolled ? "0 4px 24px rgba(10,22,40,0.1)" : "none", transition:"all 0.3s" }}>
       <div style={{ fontFamily:"var(--font-syne)", fontWeight:800, fontSize:"1.15rem", color:"#d4a853", letterSpacing:"-0.02em" }}>mara.dev</div>
       {!isMobile ? (
-        <div style={{ display:"flex", gap:"2rem", alignItems:"center" }}>
+        <div style={{ display:"flex", gap:"1.5rem", alignItems:"center" }}>
           {links.map((l) => (
-            <a key={l.href} href={l.href} style={{ fontSize:"0.82rem", color: dark ? "#c8d0e0" : "#0a1628", textDecoration:"none", letterSpacing:"0.08em", textTransform:"uppercase", fontWeight:600, transition:"color 0.2s" }}
+            <a key={l.href} href={l.href} style={{ fontSize:"0.82rem", color:linkColor, textDecoration:"none", letterSpacing:"0.08em", textTransform:"uppercase", fontWeight:600, transition:"color 0.2s" }}
               onMouseEnter={(e) => ((e.target as HTMLElement).style.color="#d4a853")}
-              onMouseLeave={(e) => ((e.target as HTMLElement).style.color= dark ? "#c8d0e0" : "#0a1628")}>{l.label}</a>
+              onMouseLeave={(e) => ((e.target as HTMLElement).style.color=linkColor)}>{l.label}</a>
           ))}
-          <button onClick={toggleTheme} style={{ background: dark ? "rgba(212,168,83,0.1)" : "#0d1b4b", color:"#d4a853", padding:"0.42rem 1.1rem", borderRadius:"20px", fontSize:"0.78rem", cursor:"pointer", border:"1.5px solid #d4a853", fontFamily:"var(--font-dm-sans)", fontWeight:600, transition:"all 0.2s" }}>
-            {dark ? "Mode clair" : "Mode sombre"}
+          <button onClick={() => setLang(lang === "fr" ? "en" : "fr")}
+            style={{ background:"rgba(212,168,83,0.15)", color:"#d4a853", padding:"0.38rem 0.9rem", borderRadius:20, fontSize:"0.78rem", cursor:"pointer", border:"1.5px solid rgba(212,168,83,0.4)", fontFamily:"var(--font-dm-sans)", fontWeight:700, transition:"all 0.2s", letterSpacing:"0.05em" }}>
+            {lang === "fr" ? "EN" : "FR"}
+          </button>
+          <button onClick={toggleTheme}
+            style={{ background: dark ? "rgba(212,168,83,0.1)" : "#0d1b4b", color:"#d4a853", padding:"0.38rem 1rem", borderRadius:20, fontSize:"0.78rem", cursor:"pointer", border:"1.5px solid #d4a853", fontFamily:"var(--font-dm-sans)", fontWeight:600, transition:"all 0.2s" }}>
+            {dark ? t.nav.light : t.nav.dark}
           </button>
         </div>
       ) : (
-        <div style={{ display:"flex", alignItems:"center", gap:"0.8rem" }}>
-          <button onClick={toggleTheme} style={{ background: dark ? "rgba(212,168,83,0.1)" : "#0d1b4b", color:"#d4a853", padding:"0.38rem 0.8rem", borderRadius:"20px", fontSize:"0.72rem", cursor:"pointer", border:"1.5px solid #d4a853", fontFamily:"var(--font-dm-sans)", fontWeight:600 }}>
+        <div style={{ display:"flex", alignItems:"center", gap:"0.6rem" }}>
+          <button onClick={() => setLang(lang === "fr" ? "en" : "fr")}
+            style={{ background:"rgba(212,168,83,0.15)", color:"#d4a853", padding:"0.35rem 0.7rem", borderRadius:16, fontSize:"0.75rem", cursor:"pointer", border:"1.5px solid rgba(212,168,83,0.4)", fontWeight:700 }}>
+            {lang === "fr" ? "EN" : "FR"}
+          </button>
+          <button onClick={toggleTheme}
+            style={{ background: dark ? "rgba(212,168,83,0.1)" : "#0d1b4b", color:"#d4a853", padding:"0.35rem 0.7rem", borderRadius:16, fontSize:"0.72rem", cursor:"pointer", border:"1.5px solid #d4a853", fontWeight:600 }}>
             {dark ? "Clair" : "Sombre"}
           </button>
-          <button onClick={() => setMenuOpen(!menuOpen)} style={{ background:"rgba(212,168,83,0.15)", border:"1.5px solid rgba(212,168,83,0.4)", color: dark ? "#f5f0e8" : "#0d1b4b", width:42, height:42, borderRadius:10, fontSize:"1.2rem", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center" }}>
+          <button onClick={() => setMenuOpen(!menuOpen)}
+            style={{ background:"rgba(212,168,83,0.15)", border:"1.5px solid rgba(212,168,83,0.4)", color: dark ? "#f5f0e8" : "#0d1b4b", width:40, height:40, borderRadius:10, fontSize:"1.1rem", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center" }}>
             {menuOpen ? "X" : "="}
           </button>
         </div>

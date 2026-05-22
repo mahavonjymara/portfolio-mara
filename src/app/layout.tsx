@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { DM_Sans, Syne } from "next/font/google";
 import "./globals.css";
+import { LangProvider } from "@/lib/LangContext";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -16,18 +17,15 @@ const syne = Syne({
 
 export const metadata: Metadata = {
   title: "MARA Mahavonjy — Full Stack JavaScript Developer",
-  description:
-    "Portfolio de MARA Mahavonjy, développeur Full Stack JavaScript basé à Antananarivo, Madagascar. React, Next.js, Node.js, React Native.",
+  description: "Portfolio de MARA Mahavonjy, developpeur Full Stack JavaScript base a Antananarivo, Madagascar.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" suppressHydrationWarning>
-      <body className={`${dmSans.variable} ${syne.variable}`}>{children}</body>
+      <body className={${dmSans.variable} }>
+        <LangProvider>{children}</LangProvider>
+      </body>
     </html>
   );
 }
