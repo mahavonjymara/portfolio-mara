@@ -31,6 +31,7 @@ export default function Navbar() {
   ];
   const navBg = dark ? "rgba(13,27,75,0.85)" : "rgba(135,206,235,0.75)";
   const linkColor = dark ? "#c8d0e0" : "#0a1628";
+  const btnStyle = { display:"flex", alignItems:"center", justifyContent:"center", width:36, height:36, borderRadius:"50%", fontSize:"1.1rem", cursor:"pointer", border:"1.5px solid rgba(212,168,83,0.4)", background:"rgba(212,168,83,0.12)", transition:"all 0.2s" };
   return (
     <>
       <nav style={{ position:"sticky" as const, top:0, zIndex:100, background:navBg, borderBottom:"1px solid rgba(212,168,83,0.3)", backdropFilter:"blur(20px)", boxShadow: scrolled ? "0 4px 24px rgba(10,22,40,0.1)" : "none", transition:"all 0.3s" }}>
@@ -47,9 +48,9 @@ export default function Navbar() {
                 style={{ background:"rgba(212,168,83,0.15)", color:"#d4a853", padding:"0.38rem 0.9rem", borderRadius:20, fontSize:"0.78rem", cursor:"pointer", border:"1.5px solid rgba(212,168,83,0.4)", fontWeight:700 }}>
                 {lang === "fr" ? "EN" : "FR"}
               </button>
-              <button onClick={toggleTheme}
-                style={{ background: dark ? "rgba(212,168,83,0.1)" : "#0d1b4b", color:"#d4a853", padding:"0.38rem 1rem", borderRadius:20, fontSize:"0.78rem", cursor:"pointer", border:"1.5px solid #d4a853", fontWeight:600 }}>
-                {dark ? t.nav.light : t.nav.dark}
+              <button onClick={toggleTheme} title={dark ? "Mode clair" : "Mode sombre"}
+                style={{ ...btnStyle, fontSize:"1.2rem" }}>
+                {dark ? "☀️" : "🌙"}
               </button>
             </div>
           ) : (
@@ -58,9 +59,9 @@ export default function Navbar() {
                 style={{ background:"rgba(212,168,83,0.15)", color:"#d4a853", padding:"0.35rem 0.7rem", borderRadius:16, fontSize:"0.75rem", cursor:"pointer", border:"1.5px solid rgba(212,168,83,0.4)", fontWeight:700 }}>
                 {lang === "fr" ? "EN" : "FR"}
               </button>
-              <button onClick={toggleTheme}
-                style={{ background: dark ? "rgba(212,168,83,0.1)" : "#0d1b4b", color:"#d4a853", padding:"0.35rem 0.7rem", borderRadius:16, fontSize:"0.72rem", cursor:"pointer", border:"1.5px solid #d4a853", fontWeight:600 }}>
-                {dark ? "Clair" : "Sombre"}
+              <button onClick={toggleTheme} title={dark ? "Mode clair" : "Mode sombre"}
+                style={{ ...btnStyle }}>
+                {dark ? "☀️" : "🌙"}
               </button>
               <button onClick={() => setMenuOpen(!menuOpen)}
                 style={{ background:"rgba(212,168,83,0.15)", border:"1.5px solid rgba(212,168,83,0.4)", color: dark ? "#f5f0e8" : "#0d1b4b", width:40, height:40, borderRadius:10, fontSize:"1.1rem", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", fontWeight:700 }}>
@@ -71,11 +72,9 @@ export default function Navbar() {
         </div>
       </nav>
       {isMobile && menuOpen && (
-        <div
-          onClick={() => setMenuOpen(false)}
+        <div onClick={() => setMenuOpen(false)}
           style={{ position:"fixed" as const, top:0, left:0, right:0, bottom:0, zIndex:999, background:"rgba(5,12,30,0.75)", backdropFilter:"blur(10px)", display:"flex", alignItems:"center", justifyContent:"center", padding:"2rem" }}>
-          <div
-            onClick={(e) => e.stopPropagation()}
+          <div onClick={(e) => e.stopPropagation()}
             style={{ background: dark ? "rgba(20,32,80,0.98)" : "rgba(60,90,160,0.95)", borderRadius:24, padding:"1.5rem", width:"100%", maxWidth:300, boxShadow:"0 24px 64px rgba(0,0,0,0.5)", border:"1px solid rgba(212,168,83,0.25)", backdropFilter:"blur(20px)" }}>
             {links.map((l, i) => (
               <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)}
