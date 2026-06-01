@@ -1,6 +1,7 @@
 ﻿"use client";
 import { useState, useEffect } from "react";
 import { useLang } from "@/lib/LangContext";
+import Logo from "@/components/Logo";
 export default function Navbar() {
   const { lang, setLang, t } = useLang();
   const [dark, setDark] = useState(false);
@@ -35,8 +36,11 @@ export default function Navbar() {
   return (
     <>
       <nav style={{ position:"sticky" as const, top:0, zIndex:100, background:navBg, borderBottom: dark ? "1px solid rgba(212,168,83,0.15)" : "1px solid rgba(10,15,30,0.08)", backdropFilter:"blur(20px)", boxShadow: scrolled ? (dark ? "0 4px 24px rgba(0,0,0,0.3)" : "0 4px 24px rgba(10,15,30,0.08)") : "none", transition:"all 0.3s" }}>
-        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"1rem 1.5rem" }}>
-          <div style={{ fontFamily:"var(--font-syne)", fontWeight:800, fontSize:"1.15rem", color:"#d4a853", letterSpacing:"-0.02em" }}>mara.dev</div>
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"0.8rem 1.5rem" }}>
+          <div style={{ display:"flex", alignItems:"center", gap:"0.6rem" }}>
+            <Logo />
+            <span style={{ fontFamily:"var(--font-syne)", fontWeight:800, fontSize:"1.1rem", color:"#d4a853", letterSpacing:"-0.02em" }}>mara.dev</span>
+          </div>
           {!isMobile ? (
             <div style={{ display:"flex", gap:"1.5rem", alignItems:"center" }}>
               {links.map((l) => (
@@ -73,7 +77,7 @@ export default function Navbar() {
         <div onClick={() => setMenuOpen(false)}
           style={{ position:"fixed" as const, top:0, left:0, right:0, bottom:0, zIndex:999, background:"rgba(5,10,20,0.8)", backdropFilter:"blur(10px)", display:"flex", alignItems:"center", justifyContent:"center", padding:"2rem" }}>
           <div onClick={(e) => e.stopPropagation()}
-            style={{ background: dark ? "rgba(15,22,45,0.98)" : "rgba(255,255,255,0.97)", borderRadius:24, padding:"1.5rem", width:"100%", maxWidth:300, boxShadow:"0 24px 64px rgba(0,0,0,0.4)", border: dark ? "1px solid rgba(212,168,83,0.2)" : "1px solid rgba(10,15,30,0.1)", backdropFilter:"blur(20px)" }}>
+            style={{ background: dark ? "rgba(15,22,45,0.98)" : "rgba(255,255,255,0.97)", borderRadius:24, padding:"1.5rem", width:"100%", maxWidth:300, boxShadow:"0 24px 64px rgba(0,0,0,0.4)", border: dark ? "1px solid rgba(212,168,83,0.2)" : "1px solid rgba(10,15,30,0.1)" }}>
             {links.map((l, i) => (
               <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)}
                 style={{ display:"flex", alignItems:"center", gap:"1rem", padding:"0.9rem 1rem", borderRadius:14, marginBottom: i < links.length - 1 ? "0.4rem" : 0, textDecoration:"none", background:"transparent", border:"1px solid transparent", transition:"all 0.2s" }}
