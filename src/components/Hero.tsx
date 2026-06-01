@@ -22,11 +22,6 @@ export default function Hero() {
     else { setDeleting(false); setRoleIndex((i) => (i + 1) % roles[lang].length); }
     return () => clearTimeout(timeout);
   }, [displayed, deleting, roleIndex, lang]);
-  const badges = [
-    { color:"#d4a853", text:"React & Next.js", top:"10%", right:"-8%", left:"auto", bottom:"auto" },
-    { color:"#0d9e75", text:"Node.js - API REST", top:"auto", right:"auto", left:"-10%", bottom:"22%" },
-    { color:"#e0365a", text:"React Native", top:"auto", right:"4%", left:"auto", bottom:"6%" },
-  ];
   return (
     <section id="hero" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", minHeight:"88vh", padding:"4rem 2.5rem", gap:"3rem", alignItems:"center", background:"var(--bg)", transition:"background 0.5s" }}>
       <div ref={hero.ref} style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "translateY(0)" : "translateY(40px)", transition:"all 0.8s ease" }}>
@@ -59,16 +54,10 @@ export default function Hero() {
             <div style={{ position:"absolute", top:-6, left:"50%", transform:"translateX(-50%)", width:12, height:12, borderRadius:"50%", background:"#d4a853", boxShadow:"0 0 16px rgba(212,168,83,0.8)" }} />
           </div>
           <div style={{ position:"absolute", inset:10, borderRadius:"50%", border:"1px dashed rgba(212,168,83,0.25)", animation:"spin 30s linear infinite reverse" }} />
-          <style>{"@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}} @keyframes f0{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}} @keyframes f1{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}"}</style>
+          <style>{"@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}"}</style>
           <div style={{ position:"absolute", inset:22, borderRadius:"50%", overflow:"hidden", border:"3px solid #d4a853", boxShadow:"0 0 0 8px rgba(212,168,83,0.08),0 8px 40px rgba(10,22,40,0.15)", background:"var(--bg2)" }}>
             <Image src="/avatar.jpg" alt="MARA Mahavonjy" fill style={{ objectFit:"cover" }} priority />
           </div>
-          {badges.map((b, i) => (
-            <div key={i} style={{ position:"absolute", top:b.top, right:b.right, left:b.left, bottom:b.bottom, background:"var(--card)", border:"1px solid rgba(212,168,83,0.3)", borderRadius:14, padding:"0.55rem 1rem", fontSize:"0.72rem", color:"var(--text2)", display:"flex", alignItems:"center", gap:"0.5rem", whiteSpace:"nowrap", boxShadow:"var(--shadow)", backdropFilter:"blur(12px)", animation:"f" + (i % 2) + " " + (4 + i) + "s ease-in-out infinite" }}>
-              <div style={{ width:7, height:7, borderRadius:"50%", background:b.color, flexShrink:0 }} />
-              {b.text}
-            </div>
-          ))}
         </div>
       </div>
     </section>
