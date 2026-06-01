@@ -26,15 +26,6 @@ export const projects = [
     github:"#",
     demo:"#",
   },
-  {
-    icon:"💡",
-    badge:"Full Stack",
-    name:"Votre prochain projet",
-    desc:"Disponible pour contribuer a vos projets — motiva, curieux et pret a monter en competence rapidement.",
-    stack:["React","Express","Node.js","MongoDB"],
-    github:"#",
-    demo:"#",
-  },
 ];
 
 export const contact = {
