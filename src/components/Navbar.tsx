@@ -29,12 +29,12 @@ export default function Navbar() {
     { label: t.nav.projects, href: "#projects", icon: "💼" },
     { label: t.nav.contact, href: "#contact", icon: "✉️" },
   ];
-  const navBg = dark ? "rgba(13,27,75,0.85)" : "rgba(135,206,235,0.75)";
-  const linkColor = dark ? "#c8d0e0" : "#0a1628";
-  const btnStyle = { display:"flex", alignItems:"center", justifyContent:"center", width:36, height:36, borderRadius:"50%", fontSize:"1.1rem", cursor:"pointer", border:"1.5px solid rgba(212,168,83,0.4)", background:"rgba(212,168,83,0.12)", transition:"all 0.2s" };
+  const navBg = dark ? "rgba(11,17,32,0.95)" : "rgba(255,255,255,0.92)";
+  const linkColor = dark ? "#a0b0d0" : "#2a3050";
+  const btnStyle = { display:"flex", alignItems:"center", justifyContent:"center", width:36, height:36, borderRadius:"50%", fontSize:"1.1rem", cursor:"pointer", border:"1.5px solid rgba(212,168,83,0.4)", background:"rgba(212,168,83,0.1)", transition:"all 0.2s" };
   return (
     <>
-      <nav style={{ position:"sticky" as const, top:0, zIndex:100, background:navBg, borderBottom:"1px solid rgba(212,168,83,0.3)", backdropFilter:"blur(20px)", boxShadow: scrolled ? "0 4px 24px rgba(10,22,40,0.1)" : "none", transition:"all 0.3s" }}>
+      <nav style={{ position:"sticky" as const, top:0, zIndex:100, background:navBg, borderBottom: dark ? "1px solid rgba(212,168,83,0.15)" : "1px solid rgba(10,15,30,0.08)", backdropFilter:"blur(20px)", boxShadow: scrolled ? (dark ? "0 4px 24px rgba(0,0,0,0.3)" : "0 4px 24px rgba(10,15,30,0.08)") : "none", transition:"all 0.3s" }}>
         <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"1rem 1.5rem" }}>
           <div style={{ fontFamily:"var(--font-syne)", fontWeight:800, fontSize:"1.15rem", color:"#d4a853", letterSpacing:"-0.02em" }}>mara.dev</div>
           {!isMobile ? (
@@ -45,26 +45,24 @@ export default function Navbar() {
                   onMouseLeave={(e) => ((e.target as HTMLElement).style.color=linkColor)}>{l.label}</a>
               ))}
               <button onClick={() => setLang(lang === "fr" ? "en" : "fr")}
-                style={{ background:"rgba(212,168,83,0.15)", color:"#d4a853", padding:"0.38rem 0.9rem", borderRadius:20, fontSize:"0.78rem", cursor:"pointer", border:"1.5px solid rgba(212,168,83,0.4)", fontWeight:700 }}>
+                style={{ background:"rgba(212,168,83,0.12)", color:"#d4a853", padding:"0.38rem 0.9rem", borderRadius:20, fontSize:"0.78rem", cursor:"pointer", border:"1.5px solid rgba(212,168,83,0.35)", fontWeight:700 }}>
                 {lang === "fr" ? "EN" : "FR"}
               </button>
-              <button onClick={toggleTheme} title={dark ? "Mode clair" : "Mode sombre"}
-                style={{ ...btnStyle, fontSize:"1.2rem" }}>
+              <button onClick={toggleTheme} title={dark ? "Mode clair" : "Mode sombre"} style={{ ...btnStyle }}>
                 {dark ? "☀️" : "🌙"}
               </button>
             </div>
           ) : (
             <div style={{ display:"flex", alignItems:"center", gap:"0.6rem" }}>
               <button onClick={() => setLang(lang === "fr" ? "en" : "fr")}
-                style={{ background:"rgba(212,168,83,0.15)", color:"#d4a853", padding:"0.35rem 0.7rem", borderRadius:16, fontSize:"0.75rem", cursor:"pointer", border:"1.5px solid rgba(212,168,83,0.4)", fontWeight:700 }}>
+                style={{ background:"rgba(212,168,83,0.12)", color:"#d4a853", padding:"0.35rem 0.7rem", borderRadius:16, fontSize:"0.75rem", cursor:"pointer", border:"1.5px solid rgba(212,168,83,0.35)", fontWeight:700 }}>
                 {lang === "fr" ? "EN" : "FR"}
               </button>
-              <button onClick={toggleTheme} title={dark ? "Mode clair" : "Mode sombre"}
-                style={{ ...btnStyle }}>
+              <button onClick={toggleTheme} title={dark ? "Mode clair" : "Mode sombre"} style={{ ...btnStyle }}>
                 {dark ? "☀️" : "🌙"}
               </button>
               <button onClick={() => setMenuOpen(!menuOpen)}
-                style={{ background:"rgba(212,168,83,0.15)", border:"1.5px solid rgba(212,168,83,0.4)", color: dark ? "#f5f0e8" : "#0d1b4b", width:40, height:40, borderRadius:10, fontSize:"1.1rem", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", fontWeight:700 }}>
+                style={{ background:"rgba(212,168,83,0.12)", border:"1.5px solid rgba(212,168,83,0.35)", color: dark ? "#f0f4ff" : "#0a0f1e", width:40, height:40, borderRadius:10, fontSize:"1.1rem", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", fontWeight:700 }}>
                 {menuOpen ? "✕" : "☰"}
               </button>
             </div>
@@ -73,18 +71,18 @@ export default function Navbar() {
       </nav>
       {isMobile && menuOpen && (
         <div onClick={() => setMenuOpen(false)}
-          style={{ position:"fixed" as const, top:0, left:0, right:0, bottom:0, zIndex:999, background:"rgba(5,12,30,0.75)", backdropFilter:"blur(10px)", display:"flex", alignItems:"center", justifyContent:"center", padding:"2rem" }}>
+          style={{ position:"fixed" as const, top:0, left:0, right:0, bottom:0, zIndex:999, background:"rgba(5,10,20,0.8)", backdropFilter:"blur(10px)", display:"flex", alignItems:"center", justifyContent:"center", padding:"2rem" }}>
           <div onClick={(e) => e.stopPropagation()}
-            style={{ background: dark ? "rgba(20,32,80,0.98)" : "rgba(60,90,160,0.95)", borderRadius:24, padding:"1.5rem", width:"100%", maxWidth:300, boxShadow:"0 24px 64px rgba(0,0,0,0.5)", border:"1px solid rgba(212,168,83,0.25)", backdropFilter:"blur(20px)" }}>
+            style={{ background: dark ? "rgba(15,22,45,0.98)" : "rgba(255,255,255,0.97)", borderRadius:24, padding:"1.5rem", width:"100%", maxWidth:300, boxShadow:"0 24px 64px rgba(0,0,0,0.4)", border: dark ? "1px solid rgba(212,168,83,0.2)" : "1px solid rgba(10,15,30,0.1)", backdropFilter:"blur(20px)" }}>
             {links.map((l, i) => (
               <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)}
                 style={{ display:"flex", alignItems:"center", gap:"1rem", padding:"0.9rem 1rem", borderRadius:14, marginBottom: i < links.length - 1 ? "0.4rem" : 0, textDecoration:"none", background:"transparent", border:"1px solid transparent", transition:"all 0.2s" }}
-                onMouseEnter={(e) => { e.currentTarget.style.background="rgba(212,168,83,0.18)"; e.currentTarget.style.borderColor="rgba(212,168,83,0.4)"; }}
+                onMouseEnter={(e) => { e.currentTarget.style.background= dark ? "rgba(212,168,83,0.12)" : "rgba(10,15,30,0.05)"; e.currentTarget.style.borderColor= dark ? "rgba(212,168,83,0.3)" : "rgba(10,15,30,0.1)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background="transparent"; e.currentTarget.style.borderColor="transparent"; }}>
-                <div style={{ width:42, height:42, borderRadius:12, background:"rgba(255,255,255,0.1)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1.1rem", border:"1px solid rgba(255,255,255,0.12)", flexShrink:0 }}>
+                <div style={{ width:42, height:42, borderRadius:12, background: dark ? "rgba(255,255,255,0.08)" : "rgba(10,15,30,0.06)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1.1rem", border: dark ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(10,15,30,0.08)", flexShrink:0 }}>
                   {l.icon}
                 </div>
-                <span style={{ fontSize:"1.05rem", fontWeight:700, color:"#fff", fontFamily:"var(--font-syne)", letterSpacing:"0.02em" }}>{l.label}</span>
+                <span style={{ fontSize:"1.05rem", fontWeight:700, color: dark ? "#f0f4ff" : "#0a0f1e", fontFamily:"var(--font-syne)", letterSpacing:"0.02em" }}>{l.label}</span>
               </a>
             ))}
           </div>
