@@ -58,11 +58,38 @@ export const skills: Skill[] = [
     ]
   },
   {
-    icon:"🔧",
-    name:"Git / GitHub",
-    level:85,
+    icon:"🛠️",
+    name:"Outils & Dev",
+    level:82,
     label:"Avance",
-    tags:["Branches","Pull Requests","CI/CD"],
+    tags:["Git","GitHub","Docker"],
+    techs:[
+      { name:"Git", color:"#f05032", bg:"#fdecea", letter:"Git" },
+      { name:"GitHub", color:"#24292e", bg:"#f0f0f0", letter:"GH" },
+      { name:"Docker", color:"#2496ed", bg:"#e8f4fd", letter:"Dk" },
+    ]
+  },
+  {
+    icon:"📐",
+    name:"Methodologie",
+    level:70,
+    label:"Intermediaire",
+    tags:["MERISE","UML"],
+    techs:[
+      { name:"MERISE", color:"#8b5cf6", bg:"#f0ebff", letter:"MR" },
+      { name:"UML", color:"#0ea5e9", bg:"#e8f4fd", letter:"UML" },
+    ]
+  },
+  {
+    icon:"💻",
+    name:"Systeme exploitation",
+    level:75,
+    label:"Avance",
+    tags:["Windows","Linux"],
+    techs:[
+      { name:"Windows", color:"#0078d4", bg:"#e8f2fd", letter:"Win" },
+      { name:"Linux", color:"#e95420", bg:"#fdecea", letter:"Lnx" },
+    ]
   },
   {
     icon:"🎨",
@@ -70,6 +97,10 @@ export const skills: Skill[] = [
     level:70,
     label:"Intermediaire",
     tags:["Figma","Tailwind CSS","Responsive"],
+    techs:[
+      { name:"Figma", color:"#f24e1e", bg:"#fdecea", letter:"Fig" },
+      { name:"Tailwind", color:"#06b6d4", bg:"#e8f9fd", letter:"Tw" },
+    ]
   },
 ];
 
