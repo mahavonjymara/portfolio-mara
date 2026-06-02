@@ -2,6 +2,18 @@
 import { skills } from "@/lib/data";
 import { useLang } from "@/lib/LangContext";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
+
+function DbIcon({ name, color, bg, letter }: { name: string; color: string; bg: string; letter: string }) {
+  return (
+    <div title={name} style={{ display:"flex", flexDirection:"column" as const, alignItems:"center", gap:"0.3rem" }}>
+      <div style={{ width:40, height:40, borderRadius:10, background:bg, border:"1px solid " + color + "40", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.7rem", fontWeight:800, color:color, fontFamily:"monospace", letterSpacing:"-0.5px" }}>
+        {letter}
+      </div>
+      <span style={{ fontSize:"0.6rem", color:"var(--text3)", fontWeight:500 }}>{name}</span>
+    </div>
+  );
+}
+
 export default function Skills() {
   const { t } = useLang();
   const title = useScrollAnimation();
@@ -32,11 +44,19 @@ export default function Skills() {
                 </div>
                 <span>{skill.label}</span>
               </div>
-              <div style={{ display:"flex", flexWrap:"wrap" as const, gap:"0.4rem" }}>
-                {skill.tags.map((tag) => (
-                  <span key={tag} style={{ fontSize:"0.65rem", padding:"0.28rem 0.65rem", borderRadius:6, background:"rgba(212,168,83,0.1)", color:"#d4a853", border:"1px solid rgba(212,168,83,0.25)", fontWeight:600 }}>{tag}</span>
-                ))}
-              </div>
+              {"databases" in skill && skill.databases ? (
+                <div style={{ display:"flex", gap:"0.8rem", marginTop:"0.8rem", flexWrap:"wrap" as const }}>
+                  {skill.databases.map((db: { name: string; color: string; bg: string; letter: string }) => (
+                    <DbIcon key={db.name} {...db} />
+                  ))}
+                </div>
+              ) : (
+                <div style={{ display:"flex", flexWrap:"wrap" as const, gap:"0.4rem" }}>
+                  {skill.tags.map((tag) => (
+                    <span key={tag} style={{ fontSize:"0.65rem", padding:"0.28rem 0.65rem", borderRadius:6, background:"rgba(212,168,83,0.1)", color:"#d4a853", border:"1px solid rgba(212,168,83,0.25)", fontWeight:600 }}>{tag}</span>
+                  ))}
+                </div>
+              )}
             </div>
           );
         })}
