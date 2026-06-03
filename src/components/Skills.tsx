@@ -4,6 +4,28 @@ import { skills, TechItem } from "@/lib/data";
 import { useLang } from "@/lib/LangContext";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 
+function FlagFR() {
+  return (
+    <svg viewBox="0 0 24 18" width="28" height="21" xmlns="http://www.w3.org/2000/svg">
+      <rect width="8" height="18" fill="#002395"/>
+      <rect x="8" width="8" height="18" fill="#ffffff"/>
+      <rect x="16" width="8" height="18" fill="#ed2939"/>
+    </svg>
+  );
+}
+
+function FlagGB() {
+  return (
+    <svg viewBox="0 0 60 36" width="28" height="21" xmlns="http://www.w3.org/2000/svg">
+      <rect width="60" height="36" fill="#012169"/>
+      <path d="M0,0 L60,36 M60,0 L0,36" stroke="#fff" strokeWidth="6"/>
+      <path d="M0,0 L60,36 M60,0 L0,36" stroke="#C8102E" strokeWidth="4"/>
+      <path d="M30,0 V36 M0,18 H60" stroke="#fff" strokeWidth="10"/>
+      <path d="M30,0 V36 M0,18 H60" stroke="#C8102E" strokeWidth="6"/>
+    </svg>
+  );
+}
+
 function TechBadge({ name, color, bg, letter }: TechItem) {
   const svgIcons: Record<string, React.ReactElement> = {
     "Git": <svg viewBox="0 0 24 24" width="20" height="20" fill="#f05032"><path d="M23.546 10.93L13.067.452a1.55 1.55 0 0 0-2.188 0L8.708 2.627l2.76 2.76a1.838 1.838 0 0 1 2.327 2.341l2.658 2.66a1.838 1.838 0 0 1 1.9 3.039 1.837 1.837 0 0 1-2.937-2.024L12.799 8.71v6.535a1.838 1.838 0 1 1-1.685-.05V8.664a1.838 1.838 0 0 1-.997-2.416L7.375 3.498 .452 10.93a1.55 1.55 0 0 0 0 2.187l10.48 10.478a1.55 1.55 0 0 0 2.186 0l10.428-10.428a1.55 1.55 0 0 0 0-2.237"/></svg>,
@@ -22,11 +44,32 @@ function TechBadge({ name, color, bg, letter }: TechItem) {
       <div style={{ width:46, height:46, borderRadius:12, background:bg, border:"1.5px solid " + color + "40", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 2px 8px " + color + "20", transition:"transform 0.2s" }}
         onMouseEnter={(e) => (e.currentTarget.style.transform="scale(1.1)")}
         onMouseLeave={(e) => (e.currentTarget.style.transform="scale(1)")}>
-        {icon ? icon : (
-          <span style={{ fontSize:"0.68rem", fontWeight:800, color:color, fontFamily:"monospace" }}>{letter}</span>
-        )}
+        {icon ? icon : <span style={{ fontSize:"0.68rem", fontWeight:800, color:color, fontFamily:"monospace" }}>{letter}</span>}
       </div>
       <span style={{ fontSize:"0.58rem", color:"var(--text3)", fontWeight:600, textAlign:"center" as const, maxWidth:50 }}>{name}</span>
+    </div>
+  );
+}
+
+function LangBadge({ name, color, bg, flag }: TechItem) {
+  const levelMap: Record<string, number> = { "Francais": 75, "Anglais": 72 };
+  const level = levelMap[name] || 70;
+  return (
+    <div style={{ display:"flex", flexDirection:"column" as const, gap:"0.5rem", width:"100%" }}>
+      <div style={{ display:"flex", alignItems:"center", gap:"0.8rem" }}>
+        <div style={{ width:46, height:34, borderRadius:8, overflow:"hidden", border:"1.5px solid " + color + "40", boxShadow:"0 2px 8px rgba(0,0,0,0.1)", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
+          {flag === "FR" ? <FlagFR /> : <FlagGB />}
+        </div>
+        <div style={{ flex:1 }}>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:"0.3rem" }}>
+            <span style={{ fontSize:"0.85rem", fontWeight:700, color:"var(--text)", fontFamily:"var(--font-syne)" }}>{name}</span>
+            <span style={{ fontSize:"0.7rem", fontWeight:700, color:color, background:bg, padding:"0.15rem 0.5rem", borderRadius:6, border:"1px solid " + color + "40" }}>B2</span>
+          </div>
+          <div style={{ height:4, background:"var(--bg3)", borderRadius:3, overflow:"hidden" }}>
+            <div style={{ height:"100%", width: level + "%", background:"linear-gradient(90deg," + color + "," + color + "90)", borderRadius:3, transition:"width 1s ease" }} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -48,6 +91,7 @@ export default function Skills() {
       <div className="skills-grid" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(220px, 1fr))", gap:"1.5rem" }}>
         {skills.map((skill, i) => {
           const card = useScrollAnimation();
+          const isLang = skill.name === "Langues";
           return (
             <div key={skill.name} ref={card.ref}
               style={{ opacity: card.visible ? 1 : 0, transform: card.visible ? "translateY(0)" : "translateY(50px)", transition:"all 0.6s ease " + (i * 0.1) + "s", background:"var(--card)", border:"1px solid var(--border)", borderRadius:18, padding:"1.8rem 1.5rem", boxShadow:"var(--shadow)", backdropFilter:"blur(12px)" }}
@@ -57,13 +101,21 @@ export default function Skills() {
                 <span style={{ fontSize:"1.5rem" }}>{skill.icon}</span>
                 <div style={{ fontFamily:"var(--font-syne)", fontWeight:700, fontSize:"0.95rem", color:"var(--text)" }}>{skill.name}</div>
               </div>
-              <div style={{ display:"flex", alignItems:"center", gap:"0.6rem", fontSize:"0.75rem", color:"var(--text3)", marginBottom:"1rem" }}>
-                <div style={{ flex:1, height:3, background:"var(--bg3)", borderRadius:2, overflow:"hidden" }}>
-                  <div style={{ height:"100%", width: card.visible ? skill.level + "%" : "0%", borderRadius:2, background:"linear-gradient(90deg,#d4a853,#e8c27a)", transition:"width 1s ease " + (i * 0.1 + 0.3) + "s" }} />
+              {!isLang && (
+                <div style={{ display:"flex", alignItems:"center", gap:"0.6rem", fontSize:"0.75rem", color:"var(--text3)", marginBottom:"1rem" }}>
+                  <div style={{ flex:1, height:3, background:"var(--bg3)", borderRadius:2, overflow:"hidden" }}>
+                    <div style={{ height:"100%", width: card.visible ? skill.level + "%" : "0%", borderRadius:2, background:"linear-gradient(90deg,#d4a853,#e8c27a)", transition:"width 1s ease " + (i * 0.1 + 0.3) + "s" }} />
+                  </div>
+                  <span>{skill.label}</span>
                 </div>
-                <span>{skill.label}</span>
-              </div>
-              {skill.techs ? (
+              )}
+              {isLang && skill.techs ? (
+                <div style={{ display:"flex", flexDirection:"column" as const, gap:"1rem" }}>
+                  {skill.techs.map((tech) => (
+                    <LangBadge key={tech.name} {...tech} />
+                  ))}
+                </div>
+              ) : skill.techs ? (
                 <div style={{ display:"flex", flexWrap:"wrap" as const, gap:"0.8rem", marginTop:"0.5rem" }}>
                   {skill.techs.map((tech) => (
                     <TechBadge key={tech.name} {...tech} />

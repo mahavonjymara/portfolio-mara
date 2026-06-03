@@ -1,4 +1,4 @@
-﻿export type TechItem = { name: string; color: string; bg: string; letter: string };
+﻿export type TechItem = { name: string; color: string; bg: string; letter: string; flag?: string };
 
 export type Skill = {
   icon: string;
@@ -100,6 +100,17 @@ export const skills: Skill[] = [
     techs:[
       { name:"Figma", color:"#f24e1e", bg:"#fdecea", letter:"Fig" },
       { name:"Tailwind", color:"#06b6d4", bg:"#e8f9fd", letter:"Tw" },
+    ]
+  },
+  {
+    icon:"🌍",
+    name:"Langues",
+    level:75,
+    label:"B2",
+    tags:["Francais B2","Anglais B2"],
+    techs:[
+      { name:"Francais", color:"#002395", bg:"#eef0fb", letter:"FR", flag:"FR" },
+      { name:"Anglais", color:"#cf142b", bg:"#fdecea", letter:"EN", flag:"GB" },
     ]
   },
 ];
