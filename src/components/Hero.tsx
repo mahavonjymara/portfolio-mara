@@ -25,12 +25,6 @@ export default function Hero() {
   return (
     <section id="hero" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", minHeight:"88vh", padding:"4rem 2.5rem", gap:"3rem", alignItems:"center", background:"var(--bg)", transition:"background 0.5s" }}>
       <div ref={hero.ref} style={{ opacity: hero.visible ? 1 : 0, transform: hero.visible ? "translateY(0)" : "translateY(40px)", transition:"all 0.8s ease" }}>
-        <div style={{ display:"inline-flex", alignItems:"center", gap:"0.5rem", background:"rgba(100,80,220,0.08)", border:"1px solid rgba(100,80,220,0.2)", borderRadius:30, padding:"0.4rem 1rem", marginBottom:"1.5rem" }}>
-          <span style={{ fontSize:"0.8rem" }}>🎓</span>
-          <span style={{ fontSize:"0.78rem", color:"#6450dc", fontWeight:600, letterSpacing:"0.02em" }}>
-            Etudiant Master 1 · Developpement Web & Mobile
-          </span>
-        </div>
         <h1 style={{ fontFamily:"var(--font-syne)", fontSize:"3.2rem", fontWeight:800, lineHeight:1.1, letterSpacing:"-0.02em", marginBottom:"0.8rem" }}>
           <span style={{ background:"linear-gradient(135deg, #6450dc 0%, #a855f7 50%, #3b82f6 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
             MARA Mahavonjy
@@ -42,27 +36,13 @@ export default function Hero() {
           <style>{"@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}"}</style>
         </div>
         <p className="hero-desc" style={{ fontSize:"1rem", color:"var(--text2)", lineHeight:1.9, maxWidth:440, marginBottom:"2.5rem", fontWeight:300 }}>{t.hero.desc}</p>
-        <div className="hero-cta" style={{ display:"flex", gap:"1rem", flexWrap:"wrap" as const, marginBottom:"2rem" }}>
+        <div className="hero-cta" style={{ display:"flex", gap:"1rem", flexWrap:"wrap" as const }}>
           <a href="#projects">
             <button style={{ background:"linear-gradient(135deg,#6450dc,#a855f7)", color:"#fff", padding:"0.85rem 2.2rem", borderRadius:50, fontSize:"0.9rem", fontWeight:700, cursor:"pointer", border:"none", letterSpacing:"0.03em", boxShadow:"0 4px 20px rgba(100,80,220,0.35)", transition:"all 0.25s" }}>{t.hero.cta1} →</button>
           </a>
           <a href="/CV_MARA_Mahavonjy.pdf" download="CV_MARA_Mahavonjy.pdf">
             <button style={{ background:"transparent", color:"var(--text)", padding:"0.85rem 2.2rem", borderRadius:50, fontSize:"0.9rem", fontWeight:600, cursor:"pointer", border:"2px solid rgba(100,80,220,0.3)", transition:"all 0.25s" }}>{t.hero.cta2}</button>
           </a>
-        </div>
-        <div style={{ display:"flex", gap:"0.8rem" }}>
-          {[
-            { icon:"🐙", href:"https://github.com/mahavonjmara-afk" },
-            { icon:"💼", href:"https://linkedin.com/in/mara-mahavonjy" },
-            { icon:"✉️", href:"mailto:mahavonjy.mara@email.com" },
-          ].map((s, i) => (
-            <a key={i} href={s.href} target="_blank" rel="noreferrer"
-              style={{ width:44, height:44, borderRadius:"50%", background:"rgba(100,80,220,0.08)", border:"1px solid rgba(100,80,220,0.2)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem", textDecoration:"none", transition:"all 0.2s" }}
-              onMouseEnter={(e) => { e.currentTarget.style.background="rgba(100,80,220,0.15)"; e.currentTarget.style.transform="translateY(-2px)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background="rgba(100,80,220,0.08)"; e.currentTarget.style.transform="translateY(0)"; }}>
-              {s.icon}
-            </a>
-          ))}
         </div>
       </div>
       <div style={{ display:"flex", justifyContent:"center", alignItems:"center" }}>
