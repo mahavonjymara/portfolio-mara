@@ -2,18 +2,18 @@
 
 :root{
   --bg:#ffffff;
-  --bg2:#f0f4ff;
-  --bg3:#e4eaff;
-  --text:#0a0f1e;
-  --text2:#2a3050;
-  --text3:#6a7090;
+  --bg2:#f5f4ff;
+  --bg3:#ede9ff;
+  --text:#1a1535;
+  --text2:#3d3868;
+  --text3:#7b76a8;
   --gold:#d4a853;
   --gold2:#e8c27a;
   --gold3:#f5dfa0;
   --night:#0d1b4b;
-  --border:rgba(10,15,30,0.1);
-  --card:rgba(255,255,255,0.8);
-  --shadow:0 8px 32px rgba(10,15,30,0.08);
+  --border:rgba(100,80,200,0.12);
+  --card:rgba(255,255,255,0.9);
+  --shadow:0 8px 32px rgba(80,60,180,0.08);
 }
 body.dark{
   --bg:#0b1120;
@@ -37,7 +37,7 @@ body{
   transition:background 0.5s,color 0.5s;
 }
 @media(max-width:768px){
-  #hero{ grid-template-columns:1fr !important; min-height:auto !important; padding:3rem 1.2rem !important; text-align:center; }
+  #hero{grid-template-columns:1fr !important;min-height:auto !important;padding:3rem 1.2rem !important;text-align:center}
   #hero h1{font-size:2.5rem !important}
   .hero-cta{justify-content:center}
   .hero-desc{margin:0 auto 2.5rem auto !important}
