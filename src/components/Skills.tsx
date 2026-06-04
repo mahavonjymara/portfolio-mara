@@ -55,16 +55,16 @@ function LangBadge({ name, color, bg, flag }: TechItem) {
   return (
     <div style={{ display:"flex", flexDirection:"column" as const, gap:"0.5rem", width:"100%" }}>
       <div style={{ display:"flex", alignItems:"center", gap:"0.8rem" }}>
-        <div style={{ width:46, height:34, borderRadius:8, overflow:"hidden", border:"1.5px solid " + color + "40", boxShadow:"0 2px 8px rgba(0,0,0,0.1)", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
+        <div style={{ width:52, height:38, borderRadius:8, overflow:"hidden", border:"1.5px solid " + color + "40", boxShadow:"0 2px 8px rgba(0,0,0,0.12)", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
           {flag === "FR" ? <FlagFR /> : <FlagGB />}
         </div>
         <div style={{ flex:1 }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:"0.3rem" }}>
             <span style={{ fontSize:"0.85rem", fontWeight:700, color:"var(--text)", fontFamily:"var(--font-syne)" }}>{name}</span>
-            <span style={{ fontSize:"0.7rem", fontWeight:700, color:color, background:bg, padding:"0.15rem 0.5rem", borderRadius:6, border:"1px solid " + color + "40" }}>B2</span>
+            <span style={{ fontSize:"0.7rem", fontWeight:700, color:"#fff", background:"linear-gradient(135deg,#6450dc,#a855f7)", padding:"0.2rem 0.6rem", borderRadius:6 }}>B2</span>
           </div>
           <div style={{ height:4, background:"var(--bg3)", borderRadius:3, overflow:"hidden" }}>
-            <div style={{ height:"100%", width: level + "%", background:"linear-gradient(90deg," + color + "," + color + "90)", borderRadius:3 }} />
+            <div style={{ height:"100%", width: level + "%", background:"linear-gradient(90deg,#6450dc,#a855f7)", borderRadius:3 }} />
           </div>
         </div>
       </div>
@@ -92,16 +92,7 @@ export default function Skills() {
           const isLang = skill.name === "Langues";
           return (
             <div key={skill.name} ref={card.ref}
-              style={{
-                opacity: card.visible ? 1 : 0,
-                transform: card.visible ? "translateY(0)" : "translateY(50px)",
-                transition:"opacity 0.6s ease " + (i * 0.1) + "s, transform 0.6s ease " + (i * 0.1) + "s, border-color 0.2s, box-shadow 0.2s",
-                background:"var(--card)",
-                border:"1px solid var(--border)",
-                borderRadius:18,
-                padding:"1.8rem 1.5rem",
-                boxShadow:"var(--shadow)",
-              }}
+              style={{ opacity: card.visible ? 1 : 0, transform: card.visible ? "translateY(0)" : "translateY(50px)", transition:"opacity 0.6s ease " + (i * 0.1) + "s, transform 0.6s ease " + (i * 0.1) + "s, border-color 0.2s, box-shadow 0.2s", background:"var(--card)", border:"1px solid var(--border)", borderRadius:18, padding:"1.8rem 1.5rem", boxShadow:"var(--shadow)" }}
               onMouseEnter={(e) => { e.currentTarget.style.borderColor="#6450dc"; e.currentTarget.style.boxShadow="0 16px 48px rgba(100,80,220,0.15)"; }}
               onMouseLeave={(e) => { e.currentTarget.style.borderColor="var(--border)"; e.currentTarget.style.boxShadow="var(--shadow)"; }}>
               <div style={{ display:"flex", alignItems:"center", gap:"0.6rem", marginBottom:"1rem" }}>

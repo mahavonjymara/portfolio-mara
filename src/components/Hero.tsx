@@ -45,14 +45,20 @@ export default function Hero() {
           </a>
         </div>
       </div>
-      <div style={{ display:"flex", justifyContent:"center", alignItems:"center" }}>
-        <div className="avatar-wrap" style={{ position:"relative", width:360, height:400 }}>
-          <div style={{ position:"absolute", inset:0, borderRadius:32, overflow:"hidden", border:"2px solid rgba(100,80,220,0.15)", boxShadow:"0 20px 60px rgba(100,80,220,0.12)", background:"linear-gradient(135deg,rgba(100,80,220,0.05),rgba(168,85,247,0.08))" }}>
-            <Image src="/avatar.jpg" alt="MARA Mahavonjy" fill style={{ objectFit:"cover" }} priority />
+      <div style={{ display:"flex", flexDirection:"column" as const, justifyContent:"center", alignItems:"center", gap:"1rem" }}>
+        <div className="avatar-wrap" style={{ position:"relative", width:300, height:300 }}>
+          <div style={{ position:"absolute", inset:0, borderRadius:"50%", background:"linear-gradient(135deg,#6450dc,#a855f7,#3b82f6)", padding:3 }}>
+            <div style={{ width:"100%", height:"100%", borderRadius:"50%", overflow:"hidden", border:"4px solid var(--bg)" }}>
+              <Image src="/avatar.jpg" alt="MARA Mahavonjy" fill style={{ objectFit:"cover" }} priority />
+            </div>
           </div>
-          <div style={{ position:"absolute", bottom:16, right:-12, background:"rgba(100,80,220,0.9)", borderRadius:20, padding:"0.4rem 0.9rem", fontSize:"0.75rem", fontWeight:700, color:"#fff", boxShadow:"0 4px 16px rgba(100,80,220,0.4)" }}>
-            ✅ Disponible
-          </div>
+          <div style={{ position:"absolute", inset:-4, borderRadius:"50%", border:"2px dashed rgba(100,80,220,0.3)", animation:"spin 20s linear infinite" }} />
+          <style>{"@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}"}</style>
+        </div>
+        <div style={{ display:"flex", alignItems:"center", gap:"0.5rem", background:"linear-gradient(135deg,#6450dc,#a855f7)", borderRadius:30, padding:"0.5rem 1.4rem", boxShadow:"0 4px 16px rgba(100,80,220,0.35)" }}>
+          <div style={{ width:8, height:8, borderRadius:"50%", background:"#4ade80", boxShadow:"0 0 8px #4ade80", animation:"pulse 2s ease-in-out infinite" }} />
+          <span style={{ fontSize:"0.85rem", fontWeight:700, color:"#fff", letterSpacing:"0.05em" }}>Disponible</span>
+          <style>{"@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}"}</style>
         </div>
       </div>
     </section>
