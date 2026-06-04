@@ -15,12 +15,15 @@ export const skills: Skill[] = [
     name:"Frontend",
     level:80,
     label:"Avance",
-    tags:["React.js","Next.js","Laravel","Spring Boot"],
+    tags:["React.js","Next.js","Laravel","Spring Boot","HTML5","CSS3","Tailwind"],
     techs:[
       { name:"React.js", color:"#61dafb", bg:"#e8f9fd", letter:"Re" },
       { name:"Next.js", color:"#000000", bg:"#f0f0f0", letter:"Nx" },
       { name:"Laravel", color:"#ff2d20", bg:"#fdecea", letter:"Lv" },
       { name:"Spring", color:"#6db33f", bg:"#edf7e6", letter:"Sp" },
+      { name:"HTML5", color:"#e34f26", bg:"#fdecea", letter:"H5" },
+      { name:"CSS3", color:"#1572b6", bg:"#e8f0fb", letter:"C3" },
+      { name:"Tailwind", color:"#06b6d4", bg:"#e8f9fd", letter:"Tw" },
     ]
   },
   {
@@ -28,21 +31,16 @@ export const skills: Skill[] = [
     name:"Backend",
     level:75,
     label:"Avance",
-    tags:["JavaScript","TypeScript","Python","Java","PHP"],
+    tags:["JavaScript","TypeScript","Python","Java","PHP","Node.js","Express.js"],
     techs:[
       { name:"JavaScript", color:"#f7df1e", bg:"#fdfbe6", letter:"JS" },
       { name:"TypeScript", color:"#3178c6", bg:"#e8f0fb", letter:"TS" },
       { name:"Python", color:"#3572a5", bg:"#e8f0f8", letter:"Py" },
       { name:"Java", color:"#b07219", bg:"#f8f0e3", letter:"Ja" },
       { name:"PHP", color:"#777bb4", bg:"#eeeef8", letter:"PHP" },
+      { name:"Node.js", color:"#339933", bg:"#eaf5e8", letter:"No" },
+      { name:"Express", color:"#000000", bg:"#f0f0f0", letter:"Ex" },
     ]
-  },
-  {
-    icon:"📱",
-    name:"React Native",
-    level:65,
-    label:"Intermediaire",
-    tags:["Expo","Navigation","iOS/Android"],
   },
   {
     icon:"🗄️",
