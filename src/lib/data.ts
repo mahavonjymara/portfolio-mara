@@ -80,24 +80,13 @@ export const skills: Skill[] = [
   },
   {
     icon:"💻",
-    name:"Systeme exploitation",
+    name:"Systeme d'exploitation",
     level:75,
     label:"Avance",
     tags:["Windows","Linux"],
     techs:[
       { name:"Windows", color:"#0078d4", bg:"#e8f2fd", letter:"Win" },
       { name:"Linux", color:"#e95420", bg:"#fdecea", letter:"Lnx" },
-    ]
-  },
-  {
-    icon:"🎨",
-    name:"UI/UX Design",
-    level:70,
-    label:"Intermediaire",
-    tags:["Figma","Tailwind CSS","Responsive"],
-    techs:[
-      { name:"Figma", color:"#f24e1e", bg:"#fdecea", letter:"Fig" },
-      { name:"Tailwind", color:"#06b6d4", bg:"#e8f9fd", letter:"Tw" },
     ]
   },
   {
