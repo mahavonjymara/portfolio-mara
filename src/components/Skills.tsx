@@ -6,9 +6,9 @@ import {
   SiJavascript, SiTypescript, SiPython, SiPhp, SiNodedotjs, SiExpress,
   SiMysql, SiPostgresql, SiSqlite, SiMongodb,
   SiGit, SiGithub, SiDocker,
-  SiWindows11, SiLinux, SiFigma
+  SiLinux, SiFigma
 } from "react-icons/si";
-import { FaJava } from "react-icons/fa";
+import { FaJava, FaWindows } from "react-icons/fa";
 import { skills, TechItem } from "@/lib/data";
 import { useLang } from "@/lib/LangContext";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
@@ -36,30 +36,30 @@ function FlagGB() {
 }
 
 const techIcons: Record<string, { icon: React.ReactElement; color: string; bg: string }> = {
-  "React.js":    { icon: <SiReact size={22}/>,        color:"#61dafb", bg:"#e8f9fd" },
-  "Next.js":     { icon: <SiNextdotjs size={22}/>,    color:"#000000", bg:"#f0f0f0" },
-  "Laravel":     { icon: <SiLaravel size={22}/>,      color:"#ff2d20", bg:"#fdecea" },
-  "Spring":      { icon: <SiSpringboot size={22}/>,   color:"#6db33f", bg:"#edf7e6" },
-  "HTML5":       { icon: <SiHtml5 size={22}/>,        color:"#e34f26", bg:"#fdecea" },
-  "CSS3":        { icon: <SiCss size={22}/>,          color:"#1572b6", bg:"#e8f0fb" },
-  "Tailwind":    { icon: <SiTailwindcss size={22}/>,  color:"#06b6d4", bg:"#e8f9fd" },
-  "JavaScript":  { icon: <SiJavascript size={22}/>,   color:"#f7df1e", bg:"#fdfbe6" },
-  "TypeScript":  { icon: <SiTypescript size={22}/>,   color:"#3178c6", bg:"#e8f0fb" },
-  "Python":      { icon: <SiPython size={22}/>,       color:"#3572a5", bg:"#e8f0f8" },
-  "Java":        { icon: <FaJava size={22}/>,         color:"#b07219", bg:"#f8f0e3" },
-  "PHP":         { icon: <SiPhp size={22}/>,          color:"#777bb4", bg:"#eeeef8" },
-  "Node.js":     { icon: <SiNodedotjs size={22}/>,    color:"#339933", bg:"#eaf5e8" },
-  "Express":     { icon: <SiExpress size={22}/>,      color:"#000000", bg:"#f0f0f0" },
-  "MySQL":       { icon: <SiMysql size={22}/>,        color:"#00758f", bg:"#e8f4f8" },
-  "PostgreSQL":  { icon: <SiPostgresql size={22}/>,   color:"#336791", bg:"#e8eef5" },
-  "SQLite":      { icon: <SiSqlite size={22}/>,       color:"#003b57", bg:"#e0eaf0" },
-  "MongoDB":     { icon: <SiMongodb size={22}/>,      color:"#4db33d", bg:"#eaf5e8" },
-  "Git":         { icon: <SiGit size={22}/>,          color:"#f05032", bg:"#fdecea" },
-  "GitHub":      { icon: <SiGithub size={22}/>,       color:"#24292e", bg:"#f0f0f0" },
-  "Docker":      { icon: <SiDocker size={22}/>,       color:"#2496ed", bg:"#e8f4fd" },
-  "Windows":     { icon: <SiWindows11 size={22}/>,    color:"#0078d4", bg:"#e8f2fd" },
-  "Linux":       { icon: <SiLinux size={22}/>,        color:"#e95420", bg:"#fdecea" },
-  "Figma":       { icon: <SiFigma size={22}/>,        color:"#f24e1e", bg:"#fdecea" },
+  "React.js":    { icon: <SiReact size={22}/>,       color:"#61dafb", bg:"#e8f9fd" },
+  "Next.js":     { icon: <SiNextdotjs size={22}/>,   color:"#000000", bg:"#f0f0f0" },
+  "Laravel":     { icon: <SiLaravel size={22}/>,     color:"#ff2d20", bg:"#fdecea" },
+  "Spring":      { icon: <SiSpringboot size={22}/>,  color:"#6db33f", bg:"#edf7e6" },
+  "HTML5":       { icon: <SiHtml5 size={22}/>,       color:"#e34f26", bg:"#fdecea" },
+  "CSS3":        { icon: <SiCss size={22}/>,         color:"#1572b6", bg:"#e8f0fb" },
+  "Tailwind":    { icon: <SiTailwindcss size={22}/>, color:"#06b6d4", bg:"#e8f9fd" },
+  "JavaScript":  { icon: <SiJavascript size={22}/>,  color:"#f7df1e", bg:"#fdfbe6" },
+  "TypeScript":  { icon: <SiTypescript size={22}/>,  color:"#3178c6", bg:"#e8f0fb" },
+  "Python":      { icon: <SiPython size={22}/>,      color:"#3572a5", bg:"#e8f0f8" },
+  "Java":        { icon: <FaJava size={22}/>,        color:"#b07219", bg:"#f8f0e3" },
+  "PHP":         { icon: <SiPhp size={22}/>,         color:"#777bb4", bg:"#eeeef8" },
+  "Node.js":     { icon: <SiNodedotjs size={22}/>,   color:"#339933", bg:"#eaf5e8" },
+  "Express":     { icon: <SiExpress size={22}/>,     color:"#000000", bg:"#f0f0f0" },
+  "MySQL":       { icon: <SiMysql size={22}/>,       color:"#00758f", bg:"#e8f4f8" },
+  "PostgreSQL":  { icon: <SiPostgresql size={22}/>,  color:"#336791", bg:"#e8eef5" },
+  "SQLite":      { icon: <SiSqlite size={22}/>,      color:"#003b57", bg:"#e0eaf0" },
+  "MongoDB":     { icon: <SiMongodb size={22}/>,     color:"#4db33d", bg:"#eaf5e8" },
+  "Git":         { icon: <SiGit size={22}/>,         color:"#f05032", bg:"#fdecea" },
+  "GitHub":      { icon: <SiGithub size={22}/>,      color:"#24292e", bg:"#f0f0f0" },
+  "Docker":      { icon: <SiDocker size={22}/>,      color:"#2496ed", bg:"#e8f4fd" },
+  "Windows":     { icon: <FaWindows size={22}/>,     color:"#0078d4", bg:"#e8f2fd" },
+  "Linux":       { icon: <SiLinux size={22}/>,       color:"#e95420", bg:"#fdecea" },
+  "Figma":       { icon: <SiFigma size={22}/>,       color:"#f24e1e", bg:"#fdecea" },
   "MERISE":      { icon: <span style={{ fontSize:"0.7rem", fontWeight:800, color:"#8b5cf6" }}>MR</span>,  color:"#8b5cf6", bg:"#f0ebff" },
   "UML":         { icon: <span style={{ fontSize:"0.7rem", fontWeight:800, color:"#0ea5e9" }}>UML</span>, color:"#0ea5e9", bg:"#e8f4fd" },
 };
