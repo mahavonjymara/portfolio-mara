@@ -45,20 +45,29 @@ export default function Hero() {
           </a>
         </div>
       </div>
-      <div style={{ display:"flex", flexDirection:"column" as const, justifyContent:"center", alignItems:"center", gap:"1rem" }}>
-        <div className="avatar-wrap" style={{ position:"relative", width:300, height:300 }}>
-          <div style={{ position:"absolute", inset:0, borderRadius:"50%", background:"linear-gradient(135deg,#6450dc,#a855f7,#3b82f6)", padding:3 }}>
-            <div style={{ width:"100%", height:"100%", borderRadius:"50%", overflow:"hidden", border:"4px solid var(--bg)" }}>
-              <Image src="/avatar.jpg" alt="MARA Mahavonjy" fill style={{ objectFit:"cover" }} priority />
-            </div>
+
+      <div style={{ display:"flex", justifyContent:"center", alignItems:"center" }}>
+        <div style={{ position:"relative", width:340, height:340 }}>
+
+          {/* Anneau extérieur clair */}
+          <div style={{ position:"absolute", inset:-16, borderRadius:"50%", border:"2px solid rgba(100,80,220,0.12)", background:"rgba(100,80,220,0.04)" }} />
+
+          {/* Anneau principal dégradé */}
+          <div style={{ position:"absolute", inset:-6, borderRadius:"50%", padding:3, background:"linear-gradient(135deg,#6450dc,#a855f7,#3b82f6,rgba(100,80,220,0.2))" }}>
+            <div style={{ width:"100%", height:"100%", borderRadius:"50%", background:"var(--bg)" }} />
           </div>
-          <div style={{ position:"absolute", inset:-4, borderRadius:"50%", border:"2px dashed rgba(100,80,220,0.3)", animation:"spin 20s linear infinite" }} />
-          <style>{"@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}"}</style>
-        </div>
-        <div style={{ display:"flex", alignItems:"center", gap:"0.5rem", background:"linear-gradient(135deg,#6450dc,#a855f7)", borderRadius:30, padding:"0.5rem 1.4rem", boxShadow:"0 4px 16px rgba(100,80,220,0.35)" }}>
-          <div style={{ width:8, height:8, borderRadius:"50%", background:"#4ade80", boxShadow:"0 0 8px #4ade80", animation:"pulse 2s ease-in-out infinite" }} />
-          <span style={{ fontSize:"0.85rem", fontWeight:700, color:"#fff", letterSpacing:"0.05em" }}>Disponible</span>
-          <style>{"@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}"}</style>
+
+          {/* Photo */}
+          <div style={{ position:"absolute", inset:0, borderRadius:"50%", overflow:"hidden", border:"4px solid var(--bg)", boxShadow:"0 8px 40px rgba(100,80,220,0.2)" }}>
+            <Image src="/avatar.jpg" alt="MARA Mahavonjy" fill style={{ objectFit:"cover", objectPosition:"center top" }} priority />
+          </div>
+
+          {/* Badge Disponible en bas à droite */}
+          <div style={{ position:"absolute", bottom:10, right:-20, display:"flex", alignItems:"center", gap:"0.45rem", background:"linear-gradient(135deg,#6450dc,#a855f7)", borderRadius:30, padding:"0.5rem 1.2rem", boxShadow:"0 4px 20px rgba(100,80,220,0.45)", zIndex:10 }}>
+            <div style={{ width:8, height:8, borderRadius:"50%", background:"#4ade80", boxShadow:"0 0 8px #4ade80", flexShrink:0, animation:"pulse 2s ease-in-out infinite" }} />
+            <span style={{ fontSize:"0.82rem", fontWeight:700, color:"#fff", letterSpacing:"0.04em" }}>Disponible</span>
+          </div>
+          <style>{"@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(0.85)}}"}</style>
         </div>
       </div>
     </section>
