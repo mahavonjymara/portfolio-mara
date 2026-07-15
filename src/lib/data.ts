@@ -94,8 +94,9 @@ export const skills: Skill[] = [
     name:"Langues",
     level:75,
     label:"B2",
-    tags:["Francais B2","Anglais B2"],
+    tags:["Malagasy","Francais B2","Anglais B2"],
     techs:[
+      { name:"Malagasy", color:"#007749", bg:"#e6f4ee", letter:"MG", flag:"MG" },
       { name:"Francais", color:"#002395", bg:"#eef0fb", letter:"FR", flag:"FR" },
       { name:"Anglais", color:"#cf142b", bg:"#fdecea", letter:"EN", flag:"GB" },
     ]

@@ -13,6 +13,17 @@ import { skills, TechItem } from "@/lib/data";
 import { useLang } from "@/lib/LangContext";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 
+function FlagMG() {
+  return (
+    <svg viewBox="0 0 30 20" width="28" height="21" xmlns="http://www.w3.org/2000/svg">
+      <rect width="30" height="20" fill="#fc3d32"/>
+      <rect width="10" height="20" fill="#ffffff"/>
+      <rect x="10" width="20" height="10" fill="#ffffff"/>
+      <rect x="10" y="10" width="20" height="10" fill="#007749"/>
+    </svg>
+  );
+}
+
 function FlagFR() {
   return (
     <svg viewBox="0 0 24 18" width="28" height="21" xmlns="http://www.w3.org/2000/svg">
@@ -81,18 +92,25 @@ function TechBadge({ name }: { name: string }) {
 }
 
 function LangBadge({ name, color, flag }: TechItem) {
-  const levelMap: Record<string, number> = { "Francais": 75, "Anglais": 72 };
+  const levelMap: Record<string, number> = { "Malagasy": 100, "Francais": 75, "Anglais": 72 };
+  const labelMap: Record<string, string> = { "Malagasy": "Maternelle", "Francais": "B2", "Anglais": "B2" };
   const level = levelMap[name] || 70;
+  const label = labelMap[name] || "B2";
+  const getFlag = () => {
+    if (flag === "MG") return <FlagMG />;
+    if (flag === "FR") return <FlagFR />;
+    return <FlagGB />;
+  };
   return (
     <div style={{ display:"flex", flexDirection:"column" as const, gap:"0.5rem", width:"100%" }}>
       <div style={{ display:"flex", alignItems:"center", gap:"0.8rem" }}>
         <div style={{ width:52, height:38, borderRadius:8, overflow:"hidden", border:"1.5px solid " + color + "40", boxShadow:"0 2px 8px rgba(0,0,0,0.12)", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
-          {flag === "FR" ? <FlagFR /> : <FlagGB />}
+          {getFlag()}
         </div>
         <div style={{ flex:1 }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:"0.3rem" }}>
             <span style={{ fontSize:"0.85rem", fontWeight:700, color:"var(--text)", fontFamily:"var(--font-syne)" }}>{name}</span>
-            <span style={{ fontSize:"0.7rem", fontWeight:700, color:"#fff", background:"linear-gradient(135deg,#6450dc,#a855f7)", padding:"0.2rem 0.6rem", borderRadius:6 }}>B2</span>
+            <span style={{ fontSize:"0.7rem", fontWeight:700, color:"#fff", background:"linear-gradient(135deg,#6450dc,#a855f7)", padding:"0.2rem 0.6rem", borderRadius:6 }}>{label}</span>
           </div>
           <div style={{ height:4, background:"var(--bg3)", borderRadius:3, overflow:"hidden" }}>
             <div style={{ height:"100%", width: level + "%", background:"linear-gradient(90deg,#6450dc,#a855f7)", borderRadius:3 }} />
